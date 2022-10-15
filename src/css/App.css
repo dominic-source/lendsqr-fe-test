@@ -1,0 +1,50 @@
+@font-face {
+  font-family: 'avenir-next';
+  src: url("../fonts/avenir-next/AvenirNextLTPro-Bold.otf") format("otf"), url("../fonts/avenir-next/AvenirNextLTPro-Regular.otf") format("otf"), url("../fonts/avenir-next/AvenirNextLTPro-It.otf") format("otf"); }
+
+.details {
+  font-family: "avenir-next", sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 27px;
+  letter-spacing: 0.1em;
+  text-align: left;
+  color: #545F7D; }
+
+.forgot_password_style {
+  font-family: "avenir-next", sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 16px;
+  letter-spacing: 0.1em;
+  text-align: left;
+  color: #39CDCC; }
+
+.forgot_password_style:hover, .forgot_password_style:active {
+  cursor: pointer;
+  transform: scale(1.01); }
+
+.login {
+  background-color: #39CDCC !important; }
+
+.login:hover {
+  background-color: #213F7D !important; }
+
+.show {
+  font-family: "avenir-next", sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 27px;
+  letter-spacing: 0.1em;
+  text-align: center;
+  color: #39CDCC; }
+
+.welcome_color {
+  font-family: "avenir-next", sans-serif;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 55px;
+  letter-spacing: -0.04em;
+  text-align: left;
+  color: #213F7D;
+  margin-bottom: 0; }

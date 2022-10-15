@@ -1,0 +1,60 @@
+@font-face {
+    font-family: 'avenir-next';
+    src: url('../fonts/avenir-next/AvenirNextLTPro-Bold.otf') format('otf'),
+     url('../fonts/avenir-next/AvenirNextLTPro-Regular.otf') format('otf'),
+    url('../fonts/avenir-next/AvenirNextLTPro-It.otf') format('otf');
+  }
+$primary-color: #39CDCC;
+$welcome-color: #213F7D; 
+$details-color: #545F7D;
+$font-family_avenir: 'avenir-next', sans-serif;
+$general-font-size: 12px;
+$line-height: 16px;
+
+@mixin basic_font($ffa:$font-family_avenir,$fs:$general-font-size, $fw:400, $lh:27px, $ls:0.1em, $ta:left, $c:$primary-color) {
+    font-family: $ffa;
+    font-size: $fs;
+    font-weight: $fw;
+    line-height: $lh;
+    letter-spacing: $ls;
+    text-align: $ta;
+    color: $c;
+}
+
+
+.details{
+    @include basic_font($c:$details-color,$fs:20px);
+}
+
+.forgot_password_style{
+    @include basic_font($fw:600,$lh:$line-height);
+}
+.forgot_password_style:hover, .forgot_password_style:active{
+    cursor: pointer;
+    transform: scale(1.01);
+}
+
+
+.login{
+    background-color:$primary-color !important;
+}
+.login:hover{
+    background-color:$welcome-color !important;
+}
+
+// .logo{
+//     position: absolute;
+//     width: 1440px;
+//     height: 900px;
+//     left: 0px;
+//     top: 0px;
+// }
+.show{
+    @include basic_font($fs:20px,$ta:center,$fw:600);
+}
+
+.welcome_color{
+    @include basic_font($fs:40px,$fw:700,$lh:55px,$ls:-0.04em,$c:$welcome-color);    
+    margin-bottom:0;
+
+}
