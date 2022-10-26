@@ -1,27 +1,18 @@
 import React, {useState} from 'react'
 import { Typography,
-            Box, 
-            TextField, 
-            Stack, 
-            Button, 
-            Container,
-            Grid 
-        } from '@mui/material';     
+         Box, 
+         TextField, 
+         Stack, 
+         Button, 
+         Grid,
+         IconButton,
+         OutlinedInput,
+         InputLabel,
+         InputAdornment,
+         FormControl
+       } from '@mui/material';     
 import '../css/App.css';
 import { styled } from '@mui/material/styles';
-
-import IconButton from '@mui/material/IconButton';
-import Input from '@mui/material/Input';
-import FilledInput from '@mui/material/FilledInput';
-import OutlinedInput from '@mui/material/OutlinedInput';
-import InputLabel from '@mui/material/InputLabel';
-import InputAdornment from '@mui/material/InputAdornment';
-import FormControl from '@mui/material/FormControl';
-import Visibility from '@mui/icons-material/Visibility';
-import VisibilityOff from '@mui/icons-material/VisibilityOff';
-
-
-import { Link } from "react-router-dom";
 interface State {
     password: string;
     showPassword: boolean;
@@ -58,7 +49,7 @@ const CssFormControl = styled(FormControl)({
 
 const Login:React.FC = () => {
 
-    const [values, setValues] = React.useState<State>({
+    const [values, setValues] = useState<State>({
         password: '',
         showPassword: false,
       });
@@ -83,8 +74,6 @@ const Login:React.FC = () => {
     return (
         <div>
             <Grid container spacing={8}>
-
-                
                 <Grid  xs={12} sm={6} md={6} sx={{pl:{sm:6,md:12},pt:{sm:10,md:15}, bgcolor:'rgb(229, 229, 229,0.2)'}}>
                 
                     <Box pb={10}>
