@@ -95,7 +95,7 @@ const Table:React.FC = (props) => {
                             {new Date (item.lastActiveDate).getUTCMonth() <= new Date().getUTCMonth() ? 
                             <td><div className='active'>Active</div></td> : 
                             <td><div className='inactive'>Inactive</div></td>}
-                            <td key={item.id} >&nbsp;&nbsp;<img src='/vector.svg' alt='click me' className='dots'/>&nbsp;&nbsp;</td>
+                            <td key={item.id} >&nbsp;&nbsp;<img src='/Vector.svg' alt='click me' className='dots'/>&nbsp;&nbsp;</td>
                         </tr>)
                     })
                     }
