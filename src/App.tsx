@@ -24,7 +24,7 @@ const App: React.FC  = () => {
       
       <Routes>
         {/* The route to the LOGIN page */}
-        <Route path="/login" element={<Login />} />  
+        <Route path="/" element={<Login />} />  
 
         {/* The route to the DASHBOARD page */}
         <Route path="/dashboard" element={<Dashboard />} /> 

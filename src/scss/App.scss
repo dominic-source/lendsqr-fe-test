@@ -142,7 +142,7 @@ $size2: 40px;
 
 /*                             Left Navigation                                     */
 .contains-all{
-    position: absolute;
+    position: fixed;
     left: 0px;
     top: 100px;
     background-color: $dashboard-color;
@@ -197,11 +197,6 @@ $size2: 40px;
             opacity: 1;
             outline-color:$primary-color;
         }
-        .spacing {
-            margin-top: 20px;
-            margin-bottom: 10px;
-        }
-
     }
 
     .top-dashboard-item{
@@ -217,6 +212,12 @@ $size2: 40px;
 
     .top-dashboard-name-next{
         opacity: 0.7;
+    }
+    .spacing {
+        margin-top: 20px;
+        margin-bottom: 10px;
+        border-bottom: 1px solid rgba(33, 63, 125, 0.06);
+        box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.04);
     }
 }
 
@@ -237,23 +238,25 @@ $size2: 40px;
 
 /*                             Users section                                             */
 .top-covering-all-item{
-    position: fixed;
+    position: relative;
     background-color:$dashboard-color;
     height: 100%;
-    width: 100%;
+    width: 1017px;
     top: 100px;
     left: 283px;
     padding-top: 60px;
     padding-left: 30px;
-
+    overflow-x: hidden;
+    
     .top {
         top: 128px;
         left: 343px;
         display: flex;
 
         .card {
-            width: 180px;
-            height: 140px;
+            width: 240px;
+            height: 160px;
+            box-sizing: border-box;
             background: $card-color;
             border: 1px solid rgba(33, 63, 125, 0.06);
             box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.04);
@@ -277,3 +280,72 @@ $size2: 40px;
 
 /*                            End of Users section                                             */
 
+/*                              List of Users section                                          */
+.table {
+    background: #FFFFFF;
+    border: 1px solid rgba(33, 63, 125, 0.06);
+    box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.04);
+    border-radius: 4px;
+    width: 1000px;
+    box-sizing: border-box;
+    margin-left: 10px;
+    padding-left: 20px;
+    padding-top: 30px;
+    margin-bottom: 30px;
+    
+    .table-head{
+        @include basic_font($ffa:$font-family_worksans, $lh:12PX, $fw:600, $c:$details-color); 
+        text-align: left;
+
+        .table-icon{
+            margin-left: 7px;
+            margin-right: 3px;
+            width: 12px;
+            height: 12px; 
+        }        
+        .table-item{
+            display:inline;
+            cursor: pointer;
+
+        }
+    }
+
+    .table-info {
+        padding-right:10px;
+        .active{
+            color: #39CD62; 
+            background-color: #e3f0e6;
+        }
+        .active,.inactive{
+            text-align: center;
+            border-radius: 15px;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+        .dots{
+            cursor:pointer;
+            transform: translateY(9px);
+        }
+        .inactive{
+            color: $details-color;
+            background-color: #dde0e7; 
+        }
+    }
+    
+    .table-info > td {
+        @include basic_font($ffa:$font-family_worksans, $fs:14px, $lh:16PX, $c:$details-color);  
+        border-bottom: solid 0.5px rgba(33, 63, 125, 0.1);
+        padding-top: 15px;
+        padding-bottom: 15px; 
+        font-size:12px;
+            
+    }
+
+    
+    
+}
+
+
+/*                              End List of Users section                                          */

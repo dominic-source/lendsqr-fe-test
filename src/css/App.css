@@ -135,7 +135,7 @@
 /*                            End of Top Navigation                                     */
 /*                             Left Navigation                                     */
 .contains-all {
-  position: absolute;
+  position: fixed;
   left: 0px;
   top: 100px;
   background-color: rgba(229, 229, 229, 0.1);
@@ -187,9 +187,6 @@
       border-left: #39CDCC solid;
       opacity: 1;
       outline-color: #39CDCC; }
-    .contains-all .container .spacing {
-      margin-top: 20px;
-      margin-bottom: 10px; }
   .contains-all .top-dashboard-item {
     display: flex;
     padding: 10px 20px;
@@ -205,6 +202,11 @@
     color: #213F7D; }
   .contains-all .top-dashboard-name-next {
     opacity: 0.7; }
+  .contains-all .spacing {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid rgba(33, 63, 125, 0.06);
+    box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.04); }
 
 .container::-webkit-scrollbar {
   width: 5px;
@@ -218,21 +220,23 @@
 /*                            End of Left Navigation                                     */
 /*                             Users section                                             */
 .top-covering-all-item {
-  position: fixed;
+  position: relative;
   background-color: rgba(229, 229, 229, 0.1);
   height: 100%;
-  width: 100%;
+  width: 1017px;
   top: 100px;
   left: 283px;
   padding-top: 60px;
-  padding-left: 30px; }
+  padding-left: 30px;
+  overflow-x: hidden; }
   .top-covering-all-item .top {
     top: 128px;
     left: 343px;
     display: flex; }
     .top-covering-all-item .top .card {
-      width: 180px;
-      height: 140px;
+      width: 240px;
+      height: 160px;
+      box-sizing: border-box;
       background: #FFFFFF;
       border: 1px solid rgba(33, 63, 125, 0.06);
       box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.04);
@@ -266,3 +270,64 @@
     margin-bottom: 20px; }
 
 /*                            End of Users section                                             */
+/*                              List of Users section                                          */
+.table {
+  background: #FFFFFF;
+  border: 1px solid rgba(33, 63, 125, 0.06);
+  box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.04);
+  border-radius: 4px;
+  width: 1000px;
+  box-sizing: border-box;
+  margin-left: 10px;
+  padding-left: 20px;
+  padding-top: 30px;
+  margin-bottom: 30px; }
+  .table .table-head {
+    font-family: "work-sans", sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 12PX;
+    letter-spacing: 0.1em;
+    text-align: left;
+    color: #545F7D;
+    text-align: left; }
+    .table .table-head .table-icon {
+      margin-left: 7px;
+      margin-right: 3px;
+      width: 12px;
+      height: 12px; }
+    .table .table-head .table-item {
+      display: inline;
+      cursor: pointer; }
+  .table .table-info {
+    padding-right: 10px; }
+    .table .table-info .active {
+      color: #39CD62;
+      background-color: #e3f0e6; }
+    .table .table-info .active, .table .table-info .inactive {
+      text-align: center;
+      border-radius: 15px;
+      padding-top: 5px;
+      padding-bottom: 5px;
+      padding-left: 15px;
+      padding-right: 15px; }
+    .table .table-info .dots {
+      cursor: pointer;
+      transform: translateY(9px); }
+    .table .table-info .inactive {
+      color: #545F7D;
+      background-color: #dde0e7; }
+  .table .table-info > td {
+    font-family: "work-sans", sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16PX;
+    letter-spacing: 0.1em;
+    text-align: left;
+    color: #545F7D;
+    border-bottom: solid 0.5px rgba(33, 63, 125, 0.1);
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-size: 12px; }
+
+/*                              End List of Users section                                          */

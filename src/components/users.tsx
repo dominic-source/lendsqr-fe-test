@@ -1,11 +1,10 @@
 import { Box, Typography } from '@mui/material';
 import React from 'react';
 import { solve } from './MainDashboard';
+import Table from './Table';
 
 const icons:[string[], string[]] = [['USERS', 'ACTIVE USERS', 'USERS WITH LOANS',
  'USERS WITH SAVINGS'],['icon','icon (1)','icon (2)', 'icon (3)']];
-
-const list:string[] = ['ORGANIZATION','USERNAME','EMAIL','PHONE NUMBER', 'DATE JOINED', 'STATUS']
 
  interface dashboardItem {
     id: number,
@@ -33,8 +32,8 @@ const Users:React.FC = () => {
                 })}
             </div>
 
-            <div>
-                
+            <div>  
+                <Table />
             </div>
         </div>
     )
