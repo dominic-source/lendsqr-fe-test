@@ -8,8 +8,6 @@ const Table:React.FC = (props) => {
     const [itemNumber, getNumber] = useState(0);
     const url:string = 'https://6270020422c706a0ae70b72c.mockapi.io/lendsqr/api/v1/users';
 
-    // Fetch data from the url string
-    const data = fetch(url);
     
     // Opening Database
     const request = indexedDB.open("Lendsqr_webapp_Database", 3);
@@ -20,7 +18,10 @@ const Table:React.FC = (props) => {
     };
     
     useEffect(()=>{
-
+        
+    // Fetch data from the url string
+    const data = fetch(url);
+    
     request.onupgradeneeded = (event:Event | any) => {
         const db = event.target.result;
 
