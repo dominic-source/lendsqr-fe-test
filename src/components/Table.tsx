@@ -8,6 +8,9 @@ const Table:React.FC = (props) => {
     const [itemNumber, getNumber] = useState(0);
     const url:string = 'https://6270020422c706a0ae70b72c.mockapi.io/lendsqr/api/v1/users';
 
+    // Fetch data from the url string
+    const data = fetch(url);
+
     
     // Opening Database
     const request = indexedDB.open("Lendsqr_webapp_Database", 3);
@@ -16,11 +19,6 @@ const Table:React.FC = (props) => {
     request.onerror = (event: any) => {
         console.error(`Database error: ${event.target.result}`);
     };
-    
-    useEffect(()=>{
-        
-    // Fetch data from the url string
-    const data = fetch(url);
     
     request.onupgradeneeded = (event:Event | any) => {
         const db = event.target.result;
@@ -31,12 +29,13 @@ const Table:React.FC = (props) => {
         // Create a unique index to retrieve customer(s) information
         objectStore.createIndex("id", "id", { unique: true });
 
+
         // Manipulate the data into json file
         data.then(res =>
           res.json()).then(info => {
             
             // create a transaction for customers
-              const customerObjectStore = db.transaction('customers', "readwrite").objectStore("customers");
+              const customerObjectStore = db.transaction(["customers"], "readwrite").objectStore("customers");
               info.forEach((customer:any) => {
                 // add customers to the database
                   customerObjectStore.add(customer);
@@ -44,23 +43,23 @@ const Table:React.FC = (props) => {
             });
     };
 
-   
-    request.onsuccess = (event:any) => {
-        const db = event.target.result;
+    useEffect(()=>{
+        request.onsuccess = (event:any) => {
+            const db = event.target.result;
 
-        // Create a transaction for to retrieve customer data
-        const transaction = db.transaction("customers").objectStore("customers");
+            // Create a transaction for to retrieve customer data
+            const transaction = db.transaction("customers").objectStore("customers");
 
-        // A key range value to get customer information through the id
-        const keyRangeValue = IDBKeyRange.bound(itemNumber+1, itemNumber+11);
+            // A key range value to get customer information through the id
+            const keyRangeValue = IDBKeyRange.bound(itemNumber+1, itemNumber+11);
 
-        // Get all the value within the itemNumber range
-        const getRequest = transaction.getAll(keyRangeValue);
-        getRequest.transaction.oncomplete = () => {
-            let results = getRequest.result;
-                setState(results);
+            // Get all the value within the itemNumber range
+            const getRequest = transaction.getAll(keyRangeValue);
+            getRequest.transaction.oncomplete = () => {
+                let results = getRequest.result;
+                    setState(results);
+            }
         }
-    }
 },[]);
 
 

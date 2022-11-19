@@ -69,13 +69,15 @@
   position: fixed;
   left: 0px;
   top: 0px;
-  z-index: 1; }
+  z-index: 1;
+  box-sizing: border-box; }
 
 .navigation {
   position: fixed;
   background-color: white;
   height: 100px;
-  width: 100%; }
+  min-width: 1400px;
+  box-sizing: border-box; }
 
 .search {
   width: 400px;
@@ -331,3 +333,114 @@
     font-size: 12px; }
 
 /*                              End List of Users section                                          */
+/*                              Search for Users section                                          */
+.search-control {
+  position: absolute;
+  width: 270px;
+  height: 600px;
+  left: 60px;
+  top: 340px;
+  background: #FFFFFF;
+  border: 1px solid rgba(84, 95, 125, 0.14);
+  box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.04);
+  border-radius: 4px;
+  box-sizing: border-box; }
+  .search-control .search-filter {
+    padding-left: 10px;
+    padding-top: 20px; }
+    .search-control .search-filter .label {
+      font-family: "work-sans", sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 16PX;
+      letter-spacing: 0.1em;
+      text-align: left;
+      color: #545F7D; }
+    .search-control .search-filter .input-style {
+      margin-top: 5px;
+      margin-bottom: 15px;
+      width: 230px;
+      height: 40px; }
+    .search-control .search-filter .buttons {
+      display: flex;
+      margin-top: 20px;
+      height: 42px;
+      vertical-align: middle; }
+      .search-control .search-filter .buttons .filter, .search-control .search-filter .buttons .reset {
+        box-sizing: border-box;
+        width: 98px;
+        height: 40px;
+        font-family: "work-sans", sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 16PX;
+        letter-spacing: 0.1em;
+        text-align: left;
+        color: #545F7D;
+        align-items: center;
+        text-align: center;
+        border-radius: 8px; }
+      .search-control .search-filter .buttons .filter {
+        background: #39CDCC;
+        border: 1px solid #39CDCC;
+        color: #FFFFFF; }
+      .search-control .search-filter .buttons .reset {
+        border: 1px solid #545F7D;
+        margin-right: 15px;
+        background: white; }
+      .search-control .search-filter .buttons .reset:hover, .search-control .search-filter .buttons .reset:active,
+      .search-control .search-filter .buttons .filter:hover, .search-control .search-filter .buttons .filter:active {
+        cursor: pointer;
+        height: 42px;
+        transition: height 0.1s ease-in-out; }
+
+/*                              End of Search for Users section                                          */
+/*                              view details of Users                                                    */
+.details {
+  box-sizing: border-box;
+  position: absolute;
+  width: 180px;
+  height: 130px;
+  left: 830px;
+  top: 622px;
+  background: #FFFFFF;
+  border: 1px solid rgba(84, 95, 125, 0.04);
+  box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.04);
+  border-radius: 4px; }
+  .details .details-item > div {
+    font-family: "work-sans", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 16PX;
+    letter-spacing: 0.1em;
+    text-align: left;
+    color: #545F7D; }
+  .details .details-items a {
+    text-decoration: none;
+    color: #545F7D; }
+  .details .details-items div:hover {
+    cursor: pointer;
+    user-select: none; }
+  .details .details-items .imgs {
+    margin-right: 10px; }
+
+/*                             End view details of Users                                                    */
+/*                              User Details page                                                           */
+.user-details-back-button {
+  font-family: "work-sans", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19PX;
+  letter-spacing: 0.1em;
+  text-align: left;
+  color: #545F7D;
+  display: flex; }
+
+.user-details {
+  font-family: "work-sans", sans-serif;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 28PX;
+  letter-spacing: 0.1em;
+  text-align: left;
+  color: #213F7D; }

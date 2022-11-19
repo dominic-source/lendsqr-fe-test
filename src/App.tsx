@@ -13,14 +13,6 @@ import UserDetailsPage from './pages/UserDetailsPage';
 const App: React.FC  = () => {
   return (
     <Router>
-      <div className="container">
-        <div className="small">
-          {/* <Link to='/login'>Login </Link>
-          <Link to='/dashboard'>Dashboard </Link>
-          <Link to='/user_page'>User page </Link>
-          <Link to='/user_details_page'>User details page </Link> */}
-        </div>
-      </div>
       
       <Routes>
         {/* The route to the LOGIN page */}

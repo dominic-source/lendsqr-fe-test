@@ -1,7 +1,9 @@
+import Search from './Search';
 import { Box, Typography } from '@mui/material';
 import React from 'react';
 import { solve } from './MainDashboard';
 import Table from './Table';
+import Details from './Details';
 
 const icons:[string[], string[]] = [['USERS', 'ACTIVE USERS', 'USERS WITH LOANS',
  'USERS WITH SAVINGS'],['icon','icon (1)','icon (2)', 'icon (3)']];
@@ -34,6 +36,8 @@ const Users:React.FC = () => {
 
             <div>  
                 <Table />
+                <Search />
+                <Details />
             </div>
         </div>
     )

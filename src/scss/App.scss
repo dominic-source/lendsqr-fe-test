@@ -86,12 +86,16 @@ $size2: 40px;
     left: 0px;
     top: 0px;
     z-index: 1;
+    box-sizing: border-box;
 }
 .navigation {
     position: fixed;
     background-color: white;
     height: 100px;
-    width: 100%;
+    min-width: 1400px;
+    box-sizing: border-box;
+
+
 }
 
 .search {
@@ -282,7 +286,7 @@ $size2: 40px;
 
 /*                              List of Users section                                          */
 .table {
-    background: #FFFFFF;
+    background: $card-color;
     border: 1px solid rgba(33, 63, 125, 0.06);
     box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.04);
     border-radius: 4px;
@@ -341,11 +345,118 @@ $size2: 40px;
         padding-bottom: 15px; 
         font-size:12px;
             
+    }    
+}
+/*                              End List of Users section                                          */
+
+
+/*                              Search for Users section                                          */
+.search-control{
+    position: absolute;
+    width: 270px;
+    height: 600px;
+    left: 60px;
+    top: 340px;
+    background: $card-color;
+    border: 1px solid rgba(84, 95, 125, 0.14);
+    box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.04);
+    border-radius: 4px;
+    box-sizing: border-box;
+    
+    .search-filter{
+        padding-left: 10px;
+        padding-top: 20px;
+
+        .label{
+            @include basic_font($ffa:$font-family_worksans,$fw:500, $fs:14px, $lh:16PX, $c:$details-color); 
+        }
+        .input-style{
+            margin-top: 5px; 
+            margin-bottom: 15px; 
+            width: 230px;
+            height: 40px;
+        }
+        .buttons{
+            display: flex;
+            margin-top: 20px;
+            height: 42px;
+            vertical-align: middle;
+
+            .filter, .reset {
+                box-sizing: border-box;
+                width: 98px;
+                height: 40px;
+                @include basic_font($ffa:$font-family_worksans,$fw:600, $fs:14px, $lh:16PX, $c:$details-color); 
+                align-items: center;
+                text-align: center;
+                border-radius: 8px;
+            }
+
+            .filter{  
+                background: $primary-color;
+                border: 1px solid $primary-color;
+                color: $card-color; 
+            }
+            .reset{
+                border: 1px solid $details-color;
+                margin-right: 15px;
+                background: white;
+            }
+            .reset:hover,.reset:active, 
+            .filter:hover,.filter:active{
+                cursor: pointer;
+                height: 42px;
+                transition: height 0.1s ease-in-out; 
+            }
+
+        }
     }
 
-    
+}
+/*                              End of Search for Users section                                          */
+
+
+/*                              view details of Users                                                    */
+.details {
+    box-sizing: border-box;
+    position: absolute;
+    width: 180px;
+    height: 130px;
+    left: 830px;
+    top: 622px;
+    background: $card-color;
+    border: 1px solid rgba(84, 95, 125, 0.04);
+    box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.04);
+    border-radius: 4px;
+
+    .details-item >div {
+        @include basic_font($ffa:$font-family_worksans,$fw:600, $fs:14px, $lh:16PX, $c:$details-color); 
+    }
+    .details-items {
+
+        a {
+            text-decoration: none;
+            color: $details-color;
+        }
+
+        div:hover  {
+            cursor: pointer;
+            user-select: none;
+        }
+        .imgs {
+            margin-right: 10px;
+        }
+    }
     
 }
+/*                             End view details of Users                                                    */
 
+/*                              User Details page                                                           */
+.user-details-back-button{
+    @include basic_font($ffa:$font-family_worksans,$fw:400, $fs:16px, $lh:19PX, $c:$details-color); 
+    display: flex;
+}
 
-/*                              End List of Users section                                          */
+.user-details {
+    @include basic_font($ffa:$font-family_worksans,$fw:500, $fs:24px, $lh:28PX, $c:$welcome-color); 
+}
