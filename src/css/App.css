@@ -10,7 +10,7 @@
   font-family: 'roboto';
   src: url("../fonts/Roboto/Roboto-Regular.ttf") format("ttf"); }
 
-.details {
+.details-login {
   font-family: "avenir-next", sans-serif;
   font-size: 20px;
   font-weight: 400;

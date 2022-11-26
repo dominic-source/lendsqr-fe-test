@@ -86,7 +86,7 @@ const Login:React.FC = () => {
                 <Grid  xs={12} sm={6} md={6} sx={{pl:{sm:10,md:15}, pt:{sm:10,md:25}}}>
                 <Box p={1} sx={{ pb: {xs: 1, sm: 2,md: 4 }}}>
                     <h1 className='welcome_color'>Welcome!</h1>
-                    <Typography className="details">Enter details to login.</Typography>
+                    <Typography className="details-login">Enter details to login.</Typography>
                 </Box>
                 {/* Login form */}
                 <Box component="form" 

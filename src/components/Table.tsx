@@ -5,11 +5,6 @@ import Details from './Details';
 interface Props {
     handleclick: (e: React.FormEvent) => void;
 }
-// const handleDetailsClick: (e: React.FormEvent) => void = (e)=>{
-//     console.log(e);
-//     // setDetails({id:})
-
-// }
 
 const Table:React.FC <Props>= ({handleclick}) => {
 

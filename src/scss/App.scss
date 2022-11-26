@@ -39,7 +39,7 @@ $size2: 40px;
 }
 
 // Login page css code
-.details{
+.details-login{
     @include basic_font($c:$details-color,$fs:$size);
 }
 
