@@ -162,7 +162,8 @@
     .contains-all .container .item {
       height: 40px;
       opacity: 0.7;
-      border-left: 3px; }
+      border-left: 3px;
+      user-select: none; }
       .contains-all .container .item .list-of-items {
         display: flex;
         margin-left: 20px;
@@ -288,7 +289,7 @@
     font-family: "work-sans", sans-serif;
     font-size: 12px;
     font-weight: 600;
-    line-height: 12PX;
+    line-height: 12px;
     letter-spacing: 0.1em;
     text-align: left;
     color: #545F7D;
@@ -300,8 +301,10 @@
       height: 12px; }
     .table .table-head .table-item {
       display: inline;
-      cursor: pointer; }
+      cursor: pointer;
+      user-select: none; }
   .table .table-info {
+    position: relative;
     padding-right: 10px; }
     .table .table-info .active {
       color: #39CD62;
@@ -323,7 +326,7 @@
     font-family: "work-sans", sans-serif;
     font-size: 14px;
     font-weight: 400;
-    line-height: 16PX;
+    line-height: 16px;
     letter-spacing: 0.1em;
     text-align: left;
     color: #545F7D;
@@ -342,7 +345,7 @@
   top: 340px;
   background: #FFFFFF;
   border: 1px solid rgba(84, 95, 125, 0.14);
-  box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.04);
+  box-shadow: 0px 0px 10px 1000px rgba(5, 223, 223, 0.04);
   border-radius: 4px;
   box-sizing: border-box; }
   .search-control .search-filter {
@@ -352,7 +355,7 @@
       font-family: "work-sans", sans-serif;
       font-size: 14px;
       font-weight: 500;
-      line-height: 16PX;
+      line-height: 16px;
       letter-spacing: 0.1em;
       text-align: left;
       color: #545F7D; }
@@ -373,7 +376,7 @@
         font-family: "work-sans", sans-serif;
         font-size: 14px;
         font-weight: 600;
-        line-height: 16PX;
+        line-height: 16px;
         letter-spacing: 0.1em;
         text-align: left;
         color: #545F7D;
@@ -401,8 +404,8 @@
   position: absolute;
   width: 180px;
   height: 130px;
-  left: 830px;
-  top: 622px;
+  left: 750px;
+  z-index: 3;
   background: #FFFFFF;
   border: 1px solid rgba(84, 95, 125, 0.04);
   box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.04);
@@ -411,7 +414,7 @@
     font-family: "work-sans", sans-serif;
     font-size: 14px;
     font-weight: 600;
-    line-height: 16PX;
+    line-height: 16px;
     letter-spacing: 0.1em;
     text-align: left;
     color: #545F7D; }
@@ -426,21 +429,100 @@
 
 /*                             End view details of Users                                                    */
 /*                              User Details page                                                           */
-.user-details-back-button {
-  font-family: "work-sans", sans-serif;
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 19PX;
-  letter-spacing: 0.1em;
-  text-align: left;
-  color: #545F7D;
-  display: flex; }
-
 .user-details {
   font-family: "work-sans", sans-serif;
   font-size: 24px;
   font-weight: 500;
-  line-height: 28PX;
+  line-height: 28px;
   letter-spacing: 0.1em;
   text-align: left;
   color: #213F7D; }
+
+.user-details-back-button {
+  font-family: "work-sans", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19px;
+  letter-spacing: 0.1em;
+  text-align: left;
+  color: #545F7D;
+  display: flex;
+  width: 200px;
+  user-select: none; }
+
+.user-details-back-button:hover,
+.user-details-back-button:active,
+.user-details-back-button:focus {
+  cursor: pointer;
+  font-size: 1.1em; }
+
+.user-details-base {
+  box-sizing: border-box;
+  background: #FFFFFF;
+  border: 1px solid rgba(33, 63, 125, 0.06);
+  box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.04);
+  border-radius: 4px;
+  padding-top: 20px;
+  padding-left: 20px;
+  margin-top: 30px;
+  margin-right: 20px; }
+  .user-details-base .user-details-information {
+    font-family: "work-sans", sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 19px;
+    letter-spacing: 0.1em;
+    text-align: left;
+    color: #213F7D;
+    margin: 20px 0px; }
+  .user-details-base .user-details-typography {
+    font-family: "work-sans", sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 19px;
+    letter-spacing: 0.1em;
+    text-align: left;
+    color: #545F7D;
+    text-transform: uppercase;
+    margin-bottom: 5px; }
+  .user-details-base .user-details-typography-bottom {
+    font-family: "work-sans", sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 19px;
+    letter-spacing: 0.1em;
+    text-align: left;
+    color: #545F7D; }
+  .user-details-base .user-typography {
+    font-family: "work-sans", sans-serif;
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 26px;
+    letter-spacing: 0.1em;
+    text-align: left;
+    color: #213F7D; }
+  .user-details-base .user-typography-pages {
+    font-family: "work-sans", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19px;
+    letter-spacing: 0.1em;
+    text-align: center;
+    color: rgba(0, 0, 0, 0.8);
+    user-select: none;
+    padding-bottom: 10px; }
+  .user-details-base .user-typography-pages-current {
+    font-family: "work-sans", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19px;
+    letter-spacing: 0.1em;
+    text-align: center;
+    color: #39CDCC;
+    border-bottom: #39CDCC 2px solid;
+    user-select: none;
+    padding-bottom: 10px; }
+  .user-details-base .user-typography-pages-current:hover, .user-details-base .user-typography-pages:hover {
+    cursor: pointer; }
+
+/*                            End of User Details page                                                           */

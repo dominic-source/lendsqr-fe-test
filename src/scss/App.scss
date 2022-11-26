@@ -172,6 +172,7 @@ $size2: 40px;
             height:$size2;
             opacity:0.7;
             border-left: 3px;
+            user-select: none;
         
             .list-of-items {
                 display:flex;
@@ -298,7 +299,7 @@ $size2: 40px;
     margin-bottom: 30px;
     
     .table-head{
-        @include basic_font($ffa:$font-family_worksans, $lh:12PX, $fw:600, $c:$details-color); 
+        @include basic_font($ffa:$font-family_worksans, $lh:12px, $fw:600, $c:$details-color); 
         text-align: left;
 
         .table-icon{
@@ -310,11 +311,13 @@ $size2: 40px;
         .table-item{
             display:inline;
             cursor: pointer;
+            user-select: none;
 
         }
     }
 
     .table-info {
+        position:relative;
         padding-right:10px;
         .active{
             color: #39CD62; 
@@ -339,7 +342,7 @@ $size2: 40px;
     }
     
     .table-info > td {
-        @include basic_font($ffa:$font-family_worksans, $fs:14px, $lh:16PX, $c:$details-color);  
+        @include basic_font($ffa:$font-family_worksans, $fs:14px, $lh:16px, $c:$details-color);  
         border-bottom: solid 0.5px rgba(33, 63, 125, 0.1);
         padding-top: 15px;
         padding-bottom: 15px; 
@@ -359,7 +362,7 @@ $size2: 40px;
     top: 340px;
     background: $card-color;
     border: 1px solid rgba(84, 95, 125, 0.14);
-    box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.04);
+    box-shadow: 0px 0px 10px 1000px rgba(5, 223, 223, 0.04);
     border-radius: 4px;
     box-sizing: border-box;
     
@@ -368,7 +371,7 @@ $size2: 40px;
         padding-top: 20px;
 
         .label{
-            @include basic_font($ffa:$font-family_worksans,$fw:500, $fs:14px, $lh:16PX, $c:$details-color); 
+            @include basic_font($ffa:$font-family_worksans,$fw:500, $fs:14px, $lh:16px, $c:$details-color); 
         }
         .input-style{
             margin-top: 5px; 
@@ -386,7 +389,7 @@ $size2: 40px;
                 box-sizing: border-box;
                 width: 98px;
                 height: 40px;
-                @include basic_font($ffa:$font-family_worksans,$fw:600, $fs:14px, $lh:16PX, $c:$details-color); 
+                @include basic_font($ffa:$font-family_worksans,$fw:600, $fs:14px, $lh:16px, $c:$details-color); 
                 align-items: center;
                 text-align: center;
                 border-radius: 8px;
@@ -413,6 +416,7 @@ $size2: 40px;
     }
 
 }
+
 /*                              End of Search for Users section                                          */
 
 
@@ -422,15 +426,16 @@ $size2: 40px;
     position: absolute;
     width: 180px;
     height: 130px;
-    left: 830px;
-    top: 622px;
+    left: 750px;
+    z-index: 3;
+    // top: 622px;
     background: $card-color;
     border: 1px solid rgba(84, 95, 125, 0.04);
     box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.04);
     border-radius: 4px;
 
     .details-item >div {
-        @include basic_font($ffa:$font-family_worksans,$fw:600, $fs:14px, $lh:16PX, $c:$details-color); 
+        @include basic_font($ffa:$font-family_worksans,$fw:600, $fs:14px, $lh:16px, $c:$details-color); 
     }
     .details-items {
 
@@ -452,11 +457,64 @@ $size2: 40px;
 /*                             End view details of Users                                                    */
 
 /*                              User Details page                                                           */
-.user-details-back-button{
-    @include basic_font($ffa:$font-family_worksans,$fw:400, $fs:16px, $lh:19PX, $c:$details-color); 
-    display: flex;
+.user-details {
+    @include basic_font($ffa:$font-family_worksans,$fw:500, $fs:24px, $lh:28px, $c:$welcome-color); 
 }
 
-.user-details {
-    @include basic_font($ffa:$font-family_worksans,$fw:500, $fs:24px, $lh:28PX, $c:$welcome-color); 
+.user-details-back-button{
+    @include basic_font($ffa:$font-family_worksans,$fw:400, $fs:16px, $lh:19px, $c:$details-color); 
+    display: flex;
+    width: 200px;
+    user-select: none;
 }
+
+.user-details-back-button:hover,
+.user-details-back-button:active,
+.user-details-back-button:focus{
+    cursor: pointer;
+    font-size: 1.1em;  
+}
+
+.user-details-base {
+    box-sizing: border-box;
+    background: $card-color;
+    border: 1px solid rgba(33, 63, 125, 0.06);
+    box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.04);
+    border-radius: 4px;
+    padding-top: 20px;
+    padding-left: 20px;
+    margin-top: 30px;
+    margin-right: 20px;
+
+    .user-details-information {
+        @include basic_font($ffa:$font-family_worksans, $fw:700, $fs:16px, $lh:19px,$c:$welcome-color);
+        margin:20px 0px;
+    }
+    .user-details-typography {
+        @include basic_font($ffa:$font-family_worksans, $lh:19px,$c:$details-color);
+        text-transform: uppercase;
+        margin-bottom: 5px;
+    }
+    .user-details-typography-bottom {
+        @include basic_font($ffa:$font-family_worksans,$fw:700, $lh:19px,$c:$details-color);
+    }
+    .user-typography {
+        @include basic_font($ffa:$font-family_worksans,$fw:500, $fs:22px, $lh:26px, $c:$welcome-color);  
+    }
+    .user-typography-pages {
+        @include basic_font($ffa:$font-family_worksans, $fs:16px, $lh:19px,$c:rgba(0, 0, 0, 0.8), $ta:center); 
+        user-select: none; 
+        padding-bottom: 10px;
+    }
+    .user-typography-pages-current {
+        @include basic_font($ffa:$font-family_worksans, $fs:16px, $lh:19px,$c:$primary-color, $ta:center);
+        border-bottom:$primary-color 2px solid;
+        user-select: none; 
+        padding-bottom: 10px;
+    }
+    .user-typography-pages-current:hover, .user-typography-pages:hover{
+        cursor: pointer;
+    }
+}
+
+/*                            End of User Details page                                                           */

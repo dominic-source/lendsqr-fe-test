@@ -1,6 +1,6 @@
 import Search from './Search';
 import { Box, Typography } from '@mui/material';
-import React from 'react';
+import React ,{useState} from 'react';
 import { solve } from './MainDashboard';
 import Table from './Table';
 import Details from './Details';
@@ -18,6 +18,12 @@ const icons:[string[], string[]] = [['USERS', 'ACTIVE USERS', 'USERS WITH LOANS'
  solve(icons,iconsArray)
 
 const Users:React.FC = () => {
+
+    const [filter, setFilter] = useState<boolean>(false);
+
+
+    const handleClick = () => filter?setFilter(false):setFilter(true);
+
     return (
         <div className='top-covering-all-item'>
             <Typography className='users'>Users</Typography>
@@ -35,9 +41,8 @@ const Users:React.FC = () => {
             </div>
 
             <div>  
-                <Table />
-                <Search />
-                <Details />
+                <Table handleclick = {handleClick} />
+                {filter && <Search/>}
             </div>
         </div>
     )

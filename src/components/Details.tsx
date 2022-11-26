@@ -1,9 +1,14 @@
 import React from 'react';
 import {Stack} from '@mui/material';
 
-const Details:React.FC = ()=> {
+interface Props {
+    id: number;
+    visibility: boolean;
+}
+
+const Details:React.FC <Props>= ({id,visibility})=> {
     return (
-        <div className='details'>
+       <>{visibility && <div className='details'>
             <Stack direction='column' justifyContent="space-around"
               alignItems="left"
               spacing={2}
@@ -15,7 +20,7 @@ const Details:React.FC = ()=> {
                 <div><img src='/svg/user_logo.svg' alt='Backlist User' className='imgs' />Backlist User</div>
                 <div><img src='/svg/delete_friend.svg' alt='Active User' className='imgs' />Active User</div>
             </Stack>
-        </div>
+        </div>} </>
     )
 }
 

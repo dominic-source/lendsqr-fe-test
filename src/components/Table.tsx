@@ -1,11 +1,22 @@
 import React, {useEffect, useState} from 'react';
 // import { Box, Typography } from '@mui/material';
+import Details from './Details';
 
+interface Props {
+    handleclick: (e: React.FormEvent) => void;
+}
+// const handleDetailsClick: (e: React.FormEvent) => void = (e)=>{
+//     console.log(e);
+//     // setDetails({id:})
 
-const Table:React.FC = (props) => {
+// }
+
+const Table:React.FC <Props>= ({handleclick}) => {
 
     const [state, setState] = useState([]);
-    const [itemNumber, getNumber] = useState(0);
+    const [itemNumber, getNumber] = useState<number>(0);
+    const [details, setDetails] = useState({id:0, state: false});
+
     const url:string = 'https://6270020422c706a0ae70b72c.mockapi.io/lendsqr/api/v1/users';
 
     // Fetch data from the url string
@@ -44,7 +55,7 @@ const Table:React.FC = (props) => {
     };
 
     useEffect(()=>{
-        request.onsuccess = (event:any) => {
+        request.onsuccess = (event: any) => {
             const db = event.target.result;
 
             // Create a transaction for to retrieve customer data
@@ -67,17 +78,18 @@ const Table:React.FC = (props) => {
 //   list of items for the table
     const listOfFilterItems:string[] = ['ORGANIZATION','USERNAME','EMAIL','PHONE NUMBER', 'DATE JOINED', 'STATUS']
     
+//   handling click
+
     return (
         <div>
             <table className='table'>
                 <thead>
                     <tr>
                         {listOfFilterItems.map((item, index) => <th className='table-head' key={index}>
-                            <div className='table-item'>
+                            <div className='table-item' onClick={handleclick}>
                                 {item} 
                                 <img src='/filter-results-button.svg' alt='filter' className='table-icon'/>
-                            </div>
-                            
+                            </div>  
                             </th>)}
                         
                     </tr>
@@ -85,7 +97,15 @@ const Table:React.FC = (props) => {
                     
                 <tbody>
                     
-                    {state.map((item:any)=>{
+                    {state.map((item:{
+                        id:number,
+                        orgName: string,
+                        userName: string,
+                        email: string,
+                        phoneNumber: number,
+                        createdAt: string,
+                        lastActiveDate: string,
+                    })=>{
                         return ( <tr key={item.id} className='table-info'>                        
                             <td>{item.orgName}</td>
                             <td>{item.userName}</td>
@@ -95,7 +115,13 @@ const Table:React.FC = (props) => {
                             {new Date (item.lastActiveDate).getUTCMonth() <= new Date().getUTCMonth() ? 
                             <td><div className='active'>Active</div></td> : 
                             <td><div className='inactive'>Inactive</div></td>}
-                            <td key={item.id} >&nbsp;&nbsp;<img src='/Vector.svg' alt='click me' className='dots'/>&nbsp;&nbsp;</td>
+                            <td key={item.id} 
+                                onClick = {()=> setDetails({id:Number(item.id), state: !details.state})} >
+                                &nbsp;&nbsp;
+                                <img src='/Vector.svg' alt='click me' className='dots'/>&nbsp;&nbsp;
+                               { Number(item.id) === details.id && 
+                               <Details id= {item.id} visibility={details.state} />}
+                            </td>
                         </tr>)
                     })
                     }
