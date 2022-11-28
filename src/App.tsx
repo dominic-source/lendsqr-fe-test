@@ -9,6 +9,7 @@ import Dashboard from './pages/Dashboard';
 import UserPage from './pages/UserPage';
 import UserDetailsPage from './pages/UserDetailsPage';
 
+
  
 const App: React.FC  = () => {
   return (
@@ -25,7 +26,7 @@ const App: React.FC  = () => {
         <Route path="/user_page" element={<UserPage />} />
 
         {/* The route to the USER DETAILS page */} 
-        <Route path="/user_details_page"element={<UserDetailsPage />} />
+        <Route path="/user_details_page/:id" element={<UserDetailsPage />} />
       </Routes>
     </Router>
   );

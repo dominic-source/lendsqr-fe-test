@@ -69,7 +69,7 @@
   position: fixed;
   left: 0px;
   top: 0px;
-  z-index: 1;
+  z-index: 4;
   box-sizing: border-box; }
 
 .navigation {
@@ -402,30 +402,34 @@
 .details {
   box-sizing: border-box;
   position: absolute;
-  width: 180px;
-  height: 130px;
+  max-width: 180px;
+  max-height: 130px;
   left: 750px;
   z-index: 3;
   background: #FFFFFF;
   border: 1px solid rgba(84, 95, 125, 0.04);
-  box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.04);
+  box-shadow: 0.5px 0.7px 3px 3px rgba(0, 0, 0, 0.1);
   border-radius: 4px; }
-  .details .details-item > div {
+  .details .details-items a {
+    text-decoration: none;
+    color: #545F7D; }
+  .details .details-items div:hover, .details .details-items div:active, .details .details-items div:focus {
+    cursor: pointer;
+    user-select: none;
+    box-shadow: 3px 4px 5px 10px rgba(57, 205, 204, 0.3);
+    background-color: rgba(57, 205, 204, 0.3);
+    transition: box-shadow 0.7s cubic-bezier(0.55, 0.085, 0.68, 0.53);
+    transition: background-color 0.02s ease-in; }
+  .details .details-items .imgs {
+    margin-right: 10px; }
+  .details .details-items div {
     font-family: "work-sans", sans-serif;
     font-size: 14px;
-    font-weight: 600;
+    font-weight: 500;
     line-height: 16px;
     letter-spacing: 0.1em;
     text-align: left;
     color: #545F7D; }
-  .details .details-items a {
-    text-decoration: none;
-    color: #545F7D; }
-  .details .details-items div:hover {
-    cursor: pointer;
-    user-select: none; }
-  .details .details-items .imgs {
-    margin-right: 10px; }
 
 /*                             End view details of Users                                                    */
 /*                              User Details page                                                           */
@@ -454,7 +458,8 @@
 .user-details-back-button:active,
 .user-details-back-button:focus {
   cursor: pointer;
-  font-size: 1.1em; }
+  transform: scale(0.9);
+  transition: cubic-bezier(0.55, 0.085, 0.68, 0.53); }
 
 .user-details-base {
   box-sizing: border-box;

@@ -85,7 +85,7 @@ $size2: 40px;
     position:fixed;
     left: 0px;
     top: 0px;
-    z-index: 1;
+    z-index: 4;
     box-sizing: border-box;
 }
 .navigation {
@@ -424,34 +424,38 @@ $size2: 40px;
 .details {
     box-sizing: border-box;
     position: absolute;
-    width: 180px;
-    height: 130px;
+    max-width: 180px;
+    max-height: 130px;
     left: 750px;
     z-index: 3;
-    // top: 622px;
     background: $card-color;
     border: 1px solid rgba(84, 95, 125, 0.04);
-    box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.04);
+    box-shadow: 0.5px 0.7px 3px 3px rgba(0, 0, 0, 0.1);
     border-radius: 4px;
 
-    .details-item >div {
-        @include basic_font($ffa:$font-family_worksans,$fw:600, $fs:14px, $lh:16px, $c:$details-color); 
-    }
     .details-items {
 
         a {
             text-decoration: none;
             color: $details-color;
         }
-
-        div:hover  {
+        
+        div:hover, div:active, div:focus {
             cursor: pointer;
             user-select: none;
+            box-shadow: 3px 4px 5px 10px rgba(57, 205, 204, 0.3);
+            background-color: rgba(57, 205, 204, 0.3);
+            transition: box-shadow 0.7s cubic-bezier(0.55, 0.085, 0.68, 0.53);
+            transition: background-color 0.02s ease-in;
         }
         .imgs {
             margin-right: 10px;
         }
+        div {
+            @include basic_font($ffa:$font-family_worksans,$fw:500, $fs:14px, $lh:16px, $c:$details-color); 
+        }
     }
+    
     
 }
 /*                             End view details of Users                                                    */
@@ -472,7 +476,10 @@ $size2: 40px;
 .user-details-back-button:active,
 .user-details-back-button:focus{
     cursor: pointer;
-    font-size: 1.1em;  
+    // font-size: 1.1em;  
+    transform: scale(0.9);
+    transition: cubic-bezier(0.55, 0.085, 0.68, 0.53);
+    
 }
 
 .user-details-base {

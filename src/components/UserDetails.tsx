@@ -1,8 +1,8 @@
 
-import { Box, Typography, Stack, Button, Divider, Link, Grid} from '@mui/material';
-import React from 'react';
-import { createTheme, styled } from '@mui/material/styles';
-
+import { Box, Typography, Stack, Button, Divider, Link, Grid, Avatar} from '@mui/material';
+import React, {useEffect, useState} from 'react';
+import { styled } from '@mui/material/styles';
+import { useParams,} from "react-router-dom";
 const user_details = ['General Details',
                          'Documents',
                          'Bank Details', 
@@ -23,7 +23,138 @@ const StyledButton = styled(Button)(({theme}) => ({
       },
 }))
 
+
+interface Detailed {
+  profile:{
+    lastName: string;
+    firstName: string;
+    phoneNumber: string;
+    bvn: string;
+    gender: string;
+    avatar: string;
+  };
+  email: string;
+  accountBalance: string,
+  accountNumber: string,
+  education: {
+    level: string;
+    employmentStatus: string;
+    sector: string;
+    duration: string;
+    officeEmail: string;
+    monthlyIncome: string[];
+    loanRepayment: string;
+  };
+  socials: {
+    twitter: string;
+    facebook: string;
+    instagram: string;
+  };
+  guarantor: {
+    firstName: string;
+    lastName: string;
+    phoneNumber: string;
+    address: string;
+    gender: string;
+  };
+}
+
 const UserDetails:React.FC = () => {
+
+  const [state, setState] = useState<Detailed>({  
+    profile:{
+      lastName: '',
+      firstName: '',
+      phoneNumber: '',
+      bvn: '',
+      gender: '',
+      avatar: '',
+    },
+    email: '',
+    accountBalance: '',
+    accountNumber: '',
+    education: {
+      level: '',
+      employmentStatus: '',
+      sector: '',
+      duration: '',
+      officeEmail: '',
+      monthlyIncome: ['',''],
+      loanRepayment: '',
+    },
+    socials: {
+      twitter: '',
+      facebook: '',
+      instagram: '',
+    },
+    guarantor: {
+      firstName: '',
+      lastName: '',
+      phoneNumber: '',
+      address: '',
+      gender: '',
+    },
+});
+  let { id } = useParams();
+
+ // Opening Database
+ const request = indexedDB.open("Lendsqr_webapp_Database", 3);
+
+ useEffect(()=>{
+  request.onsuccess = (event: any) => {
+      const db = event.target.result;
+
+      // Create a transaction for to retrieve customer data
+      const transaction = db.transaction("customers").objectStore("customers");
+
+            // Get all the value within the itemNumber range
+      const getRequest = transaction.get(Number(id));
+      getRequest.transaction.oncomplete = () => {
+        console.log(id);
+        let profile = getRequest.result.profile;
+        let education = getRequest.result.education;
+        let socials = getRequest.result.socials;
+        let guarantor = getRequest.result.guarantor;
+
+           setState(
+          {  profile:{
+            lastName: profile.lastName,
+            firstName: profile.firstName,
+            phoneNumber: profile.phoneNumber,
+            bvn: profile.bvn,
+            gender: profile.gender,
+            avatar: profile.avatar,
+          },
+          email: getRequest.result.email,
+          accountBalance: getRequest.result.accountBalance,
+          accountNumber: getRequest.result.accountNumber,
+          education: {
+            level: education.level,
+            employmentStatus: education.employmentStatus,
+            sector: education.sector,
+            duration: education.duration,
+            officeEmail: education.officeEmail,
+            monthlyIncome: [education.monthlyIncome[0],education.monthlyIncome[1]],
+            loanRepayment: education.loanRepayment,
+          },
+          socials: {
+            twitter: socials.twitter,
+            facebook: socials.facebook,
+            instagram: socials.instagram,
+          },
+          guarantor: {
+            firstName: guarantor.firstName,
+            lastName: guarantor.lastName,
+            phoneNumber: guarantor.phoneNumber,
+            address: guarantor.address,
+            gender: guarantor.firstName,
+          },
+        });
+        console.log(getRequest.result);
+      }
+  }
+},[]);
+
     return (
         <div className='top-covering-all-item'>
 
@@ -56,15 +187,15 @@ const UserDetails:React.FC = () => {
                     <Stack direction='row'
                         spacing={3}
                         alignItems='center'>
-                        <img src='/svg/avatar.svg' alt='user avatar' />
+                        <Avatar src={state.profile.avatar} alt='user avatar' sx={{ width: 56, height: 56 }}/>
                         <Box>
-                            <Typography className='user-typography'>Grace Effiom</Typography>
-                            <Typography className='user-typography-small'>LSQFf587g90</Typography>
+                            <Typography className='user-typography'>{`${state.profile.lastName}  ${state.profile.firstName}`}</Typography>
+                            <Typography className='user-typography-small'>{state.accountNumber}</Typography>
                         </Box>
                     </Stack>
 
                     <Box>
-                        <Typography>User's Tier</Typography>
+                        <Typography className='user-typography'>User's Tier</Typography>
                         <Box> 
                             <img src='/svg/star_fill.svg' alt='star' />
                             <img src='/svg/star.svg' alt='star' />
@@ -73,8 +204,8 @@ const UserDetails:React.FC = () => {
                     </Box>
 
                     <Box>
-                        <Typography className='user-typography'>₦200,000.00</Typography>
-                        <Typography className='user-typography-small'>9912345678/Providus Bank</Typography>
+                        <Typography className='user-typography'>{`₦ ${state.accountBalance}`}</Typography>
+                        <Typography className='user-typography-small'>{state.profile.bvn}/Providus Bank</Typography>
                     </Box>
                 </Stack>
                 <Stack direction= 'row' alignItems='center' spacing= {6} mt={6}>
@@ -95,38 +226,52 @@ const UserDetails:React.FC = () => {
                 className='user-details-base'
                 pr={3}
                 pl={3}
+                pb={3}
+                mb={4}
                 spacing={3}>
                     <Box>
                         <Typography className='user-details-information'>Personal Information</Typography>
                         <Grid container spacing={3}>
                             <Grid item xs={8} sm={6} md={2.4}>
                               <Typography className='user-details-typography'>Full Name</Typography>
-                              <Typography className='user-details-typography-bottom'>Grace Effiom</Typography>
+                              <Typography className='user-details-typography-bottom'>
+                                {`${state.profile.lastName}  ${state.profile.firstName}`}
+                              </Typography>
                             </Grid>
                             
                             <Grid item xs={8} sm={6} md={2.4}>
                               <Typography className='user-details-typography'>Phone Number</Typography>
-                              <Typography className='user-details-typography-bottom'>09053564892</Typography>
+                              <Typography className='user-details-typography-bottom'>
+                                  {state.profile.phoneNumber}
+                              </Typography>
                             </Grid>
 
                             <Grid item xs={8} sm={6} md={2.4}>
                               <Typography className='user-details-typography'>Email Address</Typography>
-                              <Typography className='user-details-typography-bottom'>graceEffiom @gmail.com</Typography>
+                              <Typography className='user-details-typography-bottom'>
+                                {state.email}
+                              </Typography>
                             </Grid>
 
                             <Grid item xs={8} sm={6} md={2.4}>
                               <Typography className='user-details-typography'>BVN</Typography>
-                              <Typography className='user-details-typography-bottom'>56664848226116</Typography>
+                              <Typography className='user-details-typography-bottom'>
+                                  {state.profile.bvn}
+                              </Typography>
                             </Grid>
 
                             <Grid item xs={8} sm={6} md={2.4}>
                               <Typography className='user-details-typography'>Gender</Typography>
-                              <Typography className='user-details-typography-bottom'>Female</Typography>
+                              <Typography className='user-details-typography-bottom'>
+                                {state.profile.gender}
+                              </Typography>
                             </Grid>
 
                             <Grid item xs={8} sm={6} md={2.4}>
                               <Typography className='user-details-typography'>Marital Status</Typography>
-                              <Typography className='user-details-typography-bottom'>Single</Typography>
+                              <Typography className='user-details-typography-bottom'>
+                                Single
+                              </Typography>
                             </Grid>
 
                             <Grid item xs={8} sm={6} md={2.4}>
@@ -146,37 +291,51 @@ const UserDetails:React.FC = () => {
                         <Grid container spacing={3}>
                             <Grid item xs={8} sm={6} md={2.4}>
                               <Typography className='user-details-typography'>Level of Eduction</Typography>
-                              <Typography className='user-details-typography-bottom'>B.Sc</Typography>
+                              <Typography className='user-details-typography-bottom'>
+                                {state.education.level}
+                              </Typography>
                             </Grid>
                             
                             <Grid item xs={8} sm={6} md={2.4}>
                               <Typography className='user-details-typography'>EMPLOYEMENT STATUS</Typography>
-                              <Typography className='user-details-typography-bottom'>Employed</Typography>
+                              <Typography className='user-details-typography-bottom'>
+                                {state.education.employmentStatus}
+                              </Typography>
                             </Grid>
 
                             <Grid item xs={8} sm={6} md={2.4}>
                               <Typography className='user-details-typography'>SECTOR OF EMPLOYMENT</Typography>
-                              <Typography className='user-details-typography-bottom'>FinTech</Typography>
+                              <Typography className='user-details-typography-bottom'>
+                                {state.education.sector}
+                              </Typography>
                             </Grid>
 
                             <Grid item xs={8} sm={6} md={2.4}>
                               <Typography className='user-details-typography'>DURATION OF EMPLOYMENT</Typography>
-                              <Typography className='user-details-typography-bottom'>2 years</Typography>
+                              <Typography className='user-details-typography-bottom'>
+                                {state.education.duration}
+                              </Typography>
                             </Grid>
 
                             <Grid item xs={8} sm={6} md={2.4}>
                               <Typography className='user-details-typography'>OFFICIAL EMAIL</Typography>
-                              <Typography className='user-details-typography-bottom'>grace@lendsqr.com</Typography>
+                              <Typography className='user-details-typography-bottom'>
+                                {state.education.officeEmail}
+                              </Typography>
                             </Grid>
 
                             <Grid item xs={8} sm={6} md={2.4}>
                               <Typography className='user-details-typography'>MONTHLY INCOME</Typography>
-                              <Typography className='user-details-typography-bottom'>#200,000 - #400,000</Typography>
+                              <Typography className='user-details-typography-bottom'>
+                                {`₦ ${state.education.monthlyIncome[0]} - ₦ ${state.education.monthlyIncome[1]}`}
+                              </Typography>
                             </Grid>
 
                             <Grid item xs={8} sm={6} md={2.4}>
                               <Typography className='user-details-typography'>LOAN REPAYMENT</Typography>
-                              <Typography className='user-details-typography-bottom'>40,000</Typography>
+                              <Typography className='user-details-typography-bottom'>
+                                {state.education.loanRepayment}
+                              </Typography>
                             </Grid>
 
                         </Grid>
@@ -187,17 +346,23 @@ const UserDetails:React.FC = () => {
                         <Grid container spacing={3}>
                             <Grid item xs={8} sm={6} md={2.4}>
                               <Typography className='user-details-typography'>TWITTER</Typography>
-                              <Typography className='user-details-typography-bottom'>@graceEffiom</Typography>
+                              <Typography className='user-details-typography-bottom'>
+                                {state.socials.twitter}
+                              </Typography>
                             </Grid>
                             
                             <Grid item xs={8} sm={6} md={2.4}>
                               <Typography className='user-details-typography'>FACEBOOK</Typography>
-                              <Typography className='user-details-typography-bottom'>Grace Effiom</Typography>
+                              <Typography className='user-details-typography-bottom'>
+                                  {state.socials.facebook}
+                              </Typography>
                             </Grid>
 
                             <Grid item xs={8} sm={6} md={2.4}>
                               <Typography className='user-details-typography'>INSTAGRAM</Typography>
-                              <Typography className='user-details-typography-bottom'>@graceEffiom </Typography>
+                              <Typography className='user-details-typography-bottom'>
+                                {state.socials.instagram} 
+                              </Typography>
                             </Grid>
                         </Grid>
                     </Box>
@@ -207,22 +372,30 @@ const UserDetails:React.FC = () => {
                         <Grid container spacing={3}>
                             <Grid item xs={8} sm={6} md={2.4}>
                               <Typography className='user-details-typography'>FULL NAME</Typography>
-                              <Typography className='user-details-typography-bottom'>Grace Effiom</Typography>
+                              <Typography className='user-details-typography-bottom'>
+                                {`${state.guarantor.lastName}  ${state.guarantor.firstName}`} 
+                              </Typography>
                             </Grid>
                             
                             <Grid item xs={8} sm={6} md={2.4}>
                               <Typography className='user-details-typography'>PHONE NUMBER</Typography>
-                              <Typography className='user-details-typography-bottom'>09053564892</Typography>
+                              <Typography className='user-details-typography-bottom'>
+                                {state.guarantor.phoneNumber}
+                              </Typography>
                             </Grid>
 
                             <Grid item xs={8} sm={6} md={2.4}>
                               <Typography className='user-details-typography'>EMAIL ADDRESS</Typography>
-                              <Typography className='user-details-typography-bottom'>graceEffiom@gmail.com</Typography>
+                              <Typography className='user-details-typography-bottom'>
+                                {state.guarantor.address}
+                              </Typography>
                             </Grid>
 
                             <Grid item xs={8} sm={6} md={2.4}>
                               <Typography className='user-details-typography'>RELATIONSHIP</Typography>
-                              <Typography className='user-details-typography-bottom'>sister</Typography>
+                              <Typography className='user-details-typography-bottom'>
+                                {state.guarantor.gender === "Female" ?'Sister':'Brother'}
+                              </Typography>
                             </Grid>
                         </Grid>
                     </Box>

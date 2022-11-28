@@ -26,7 +26,7 @@ const Navigation:React.FC = () => {
               spacing={2}
               className='navigation'
               >
-            <Box><img src='lendsqr_logo.svg' alt='lendsqr logo'/></Box>
+            <Box><img src='/lendsqr_logo.svg' alt='lendsqr logo'/></Box>
 
             <div className='search_button' >
                 <input type='text' className='search' placeholder='Search for anything' />
@@ -43,7 +43,7 @@ const Navigation:React.FC = () => {
                 <NotificationsOutlinedIcon className='icon-notification'/>
             </Box>
 
-            <Avatar alt="smiling lady" src='image 4.png' />
+            <Avatar alt="smiling lady" src='/image 4.png' />
 
             <FormControl sx={{ m: 1, minWidth: 120 }}>
                 <Select

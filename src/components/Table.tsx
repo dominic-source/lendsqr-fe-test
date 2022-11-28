@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-// import { Box, Typography } from '@mui/material';
+import { Stack, Typography } from '@mui/material';
 import Details from './Details';
 
 interface Props {
@@ -9,10 +9,13 @@ interface Props {
 const Table:React.FC <Props>= ({handleclick}) => {
 
     const [state, setState] = useState([]);
-    const [itemNumber, getNumber] = useState<number>(0);
+    const [itemNumber, setItemNumber] = useState<number>(0);
     const [details, setDetails] = useState({id:0, state: false});
+    const [count, setCount] = useState<number>(100);
+    const [listOfNumber, setListOfNumber] = useState<number[]>([]);
 
     const url:string = 'https://6270020422c706a0ae70b72c.mockapi.io/lendsqr/api/v1/users';
+    let numberList:number[] = [];
 
     // Fetch data from the url string
     const data = fetch(url);
@@ -39,6 +42,8 @@ const Table:React.FC <Props>= ({handleclick}) => {
         // Manipulate the data into json file
         data.then(res =>
           res.json()).then(info => {
+
+            setCount(info.length);
             
             // create a transaction for customers
               const customerObjectStore = db.transaction(["customers"], "readwrite").objectStore("customers");
@@ -66,6 +71,11 @@ const Table:React.FC <Props>= ({handleclick}) => {
                     setState(results);
             }
         }
+        // Push numbers to numberList
+        for(let number:number= 1; number < count+1; number++){
+            numberList.push(number);
+        }
+        setListOfNumber([...numberList]);
 },[]);
 
 
@@ -73,8 +83,6 @@ const Table:React.FC <Props>= ({handleclick}) => {
 //   list of items for the table
     const listOfFilterItems:string[] = ['ORGANIZATION','USERNAME','EMAIL','PHONE NUMBER', 'DATE JOINED', 'STATUS']
     
-//   handling click
-
     return (
         <div>
             <table className='table'>
@@ -122,6 +130,23 @@ const Table:React.FC <Props>= ({handleclick}) => {
                     }
                 </tbody>   
             </table>
+            <Stack direction='row'
+                    spacing={3}
+                    justifyContent='flex-start'
+                    mb={4}
+                    pl={1}>
+                <Typography>Showing</Typography>
+                <select>
+                    {listOfNumber.map((item) => {
+                        
+                        let select:boolean = false;
+                        if(item===count){
+                            select = true;
+                        }
+                        return <option selected={select}>{item}</option>})}
+                </select>
+                <Typography>out of {count}</Typography>
+            </Stack>
         </div>
     )
 }
