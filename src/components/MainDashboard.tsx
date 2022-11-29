@@ -53,12 +53,12 @@ const MainDashboard:React.FC = () => {
     return (
         <div className='contains-all'>
             <div className='top-dashboard-item'>
-                                <img src='svg/briefcase 1.svg' alt='' className='image-style' /> 
+                                <img src='/svg/briefcase 1.svg' alt='' className='image-style' /> 
                             <div className='top-dashboard-name'>Switch Organization</div> </div>
 
 
            <div className='top-dashboard-item spacing'>
-                                <img src='svg/home 1.svg' alt='' className='image-style' /> 
+                                <img src='/svg/home 1.svg' alt='' className='image-style' /> 
                             <div className='top-dashboard-name top-dashboard-name-next'>Dashboard</div> </div>
 
         
@@ -67,7 +67,7 @@ const MainDashboard:React.FC = () => {
                 <div className='customers'>Customers</div>
                     {customersCompletedItem.map((item) => {
                             return <div className='item' tabIndex= {0} > <div className='list-of-items'>
-                                <img src={`svg/${item.icon}.svg`} alt='' className='image-style' /> 
+                                <img src={`/svg/${item.icon}.svg`} alt='' className='image-style' /> 
                             <div className='items-name'>{item.item}</div></div></div>
                                                             })
                     }
@@ -77,7 +77,7 @@ const MainDashboard:React.FC = () => {
                 <div className='customers'>Business</div>
                 {businessesCompletedItem.map((item) => {
                             return <div className='item' tabIndex= {0}> <div className='list-of-items'>
-                                <img src={`svg/${item.icon}.svg`} alt='' className='image-style' /> 
+                                <img src={`/svg/${item.icon}.svg`} alt='' className='image-style' /> 
                             <div className='items-name'>{item.item}</div></div></div>
                                                             })
                     }
@@ -86,7 +86,7 @@ const MainDashboard:React.FC = () => {
                 <div className='customers'>Setting</div>
                 {settingsCompletedItem.map((item) => {
                             return <div className='item' tabIndex= {0}> <div className='list-of-items'>
-                                <img src={`svg/${item.icon}.svg`} alt='' className='image-style' /> 
+                                <img src={`/svg/${item.icon}.svg`} alt='' className='image-style' /> 
                             <div className='items-name'>{item.item}</div></div></div>
                                                             })
                     }

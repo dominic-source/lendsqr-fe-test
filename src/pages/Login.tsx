@@ -9,7 +9,8 @@ import { Typography,
          OutlinedInput,
          InputLabel,
          InputAdornment,
-         FormControl
+         FormControl,
+         Container,
        } from '@mui/material';     
 import '../css/App.css';
 import { styled } from '@mui/material/styles';
@@ -73,17 +74,17 @@ const Login:React.FC = () => {
 
     return (
         <div>
-            <Grid container spacing={8}>
-                <Grid  xs={12} sm={6} md={6} sx={{pl:{sm:6,md:12},pt:{sm:10,md:15}, bgcolor:'rgb(229, 229, 229,0.2)'}}>
+            <Grid container spacing={{xs:0,sm:3, md:5}}>
+                <Grid  xs={12} sm={5} md={5} sx={{pl:{xs:0, sm:6,md:12},pt:{sm:10,md:15}, bgcolor:'rgb(229, 229, 229,0.2)'}}>
                 
-                    <Box pb={10}>
+                    <Box pb={{xs:1,sm:5,md:10}}>
                         <img src='lendsqr_logo.svg' alt='lendsqr logo'/>
                     </Box>
                     <Box>
                         <img src='pablo-sign-in 1.svg' alt='lendsqr' className='img'/>
                     </Box>
                 </Grid>
-                <Grid  xs={12} sm={6} md={6} sx={{pl:{sm:10,md:15}, pt:{sm:10,md:25}}}>
+                <Grid  xs={12} sm={5} md={5} sx={{pl:{xs:0, sm:10,md:15}, pt:{sm:10,md:25}}}>
                 <Box p={1} sx={{ pb: {xs: 1, sm: 2,md: 4 }}}>
                     <h1 className='welcome_color'>Welcome!</h1>
                     <Typography className="details-login">Enter details to login.</Typography>
