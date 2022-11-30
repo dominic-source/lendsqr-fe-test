@@ -13,6 +13,7 @@ import { Typography,
          Container,
        } from '@mui/material';     
 import '../css/App.css';
+import '../css/AppMobile.css';
 import { styled } from '@mui/material/styles';
 interface State {
     password: string;
@@ -111,15 +112,15 @@ const Login:React.FC = () => {
                                         onMouseDown={handleMouseDownPassword}
                                         edge="end"
                                       >
-                                        {values.showPassword ? <Typography  className='show'>HIDE</Typography> : 
-                                        <Typography className='show'> SHOW</Typography>}
+                                        {values.showPassword ? <Typography  variant='caption' className='show'>HIDE</Typography> : 
+                                        <Typography variant='caption' className='show'> SHOW</Typography>}
                                       </IconButton>
                                     </InputAdornment>
                                   }
                                   label="Password"
                                 />
                         </CssFormControl>
-                        <Typography variant='h6' className='forgot_password_style'>FORGOT PASSWORD?</Typography>
+                        <Typography variant='button' className='forgot_password_style'>FORGOT PASSWORD?</Typography>
                         <Button variant="contained" className='login' href='/dashboard' >LOG IN</Button>  
                     </Stack>
                 </Box>

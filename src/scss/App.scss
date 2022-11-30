@@ -1,6 +1,3 @@
-@media screen {
-    
-
 @font-face {
     font-family: 'avenir-next';
     src: url('../fonts/avenir-next/AvenirNextLTPro-Bold.otf') format('otf'),
@@ -98,50 +95,54 @@ $size2: 40px;
 .navigation {
     position: fixed;
     background-color: white;
-    height: 100px;
-    min-width: 1400px;
+    min-height: 100px;
     box-sizing: border-box;
 
 
 }
 
-.search {
-    width: 400px;
-    border-radius:5px ;
-    border:#E5E5E5 1px solid;
-    padding-left: 12px;
-    @include basic_font($ffa:$font-family_worksans,$fs:17px, $lh:27px, $c:$details-color)
-} 
 
 .search_button {
     position: relative;
     display:flex;
-    width: 400px;
+    width: 80%;
     height: $size2;
+    box-sizing: border-box;
+
+    .search {
+        width: 80%;
+        border-radius:5px ;
+        border:#E5E5E5 1px solid;
+        padding-left: 12px;
+        @include basic_font($ffa:$font-family_worksans,$fs:17px, $lh:27px, $c:$details-color)
+    } 
+    .search:focus,.search:active {
+        outline: $primary-color 1px solid;
+    }
+    
+    .search:hover {
+        border: $primary-color 1px solid;
+    }
+    
+    .search::placeholder {
+        opacity: 0.7;
+        @include basic_font($ffa:$font-family_worksans, $fs:14px, $lh:16.42px, $c:$details-color); 
+    }
+    
+    .search_icon {
+        width: 10%;
+        height: $size2;
+        background-color: $primary-color;
+        border-top-right-radius: 10% ;
+        border-bottom-right-radius: 10% ;
+        text-align: center;
+        position: relative;
+        top: 0;
+        right: 10%;
+        cursor: pointer;
+    }
 }
 
-.search:focus,.search:active {
-    outline: $primary-color 1px solid;
-}
-
-.search:hover {
-    border: $primary-color 1px solid;
-}
-.search_icon {
-    width: 56px;
-    height: $size2;
-    background-color:$primary-color;
-    border-top-right-radius:10% ;
-    border-bottom-right-radius:10% ;
-    text-align: center;
-    position: absolute;
-    top:0;
-    right:0;
-}
-.search::placeholder {
-    opacity: 0.7;
-    @include basic_font($ffa:$font-family_worksans, $fs:14px, $lh:16.42px, $c:$details-color); 
-}
 
 .top-anchor-tag {
     @include basic_font($ffa:$font-family_roboto, $fs:16px, $lh:27px, $ls:0em, $c:$welcome-color);
@@ -152,12 +153,13 @@ $size2: 40px;
 
 
 /*                             Left Navigation                                     */
+
 .contains-all{
     position: fixed;
     left: 0px;
     top: 100px;
     background-color: $dashboard-color;
-    width: 283px;
+    max-width: 283px;
 
     .container { 
         height: 520px;
@@ -233,6 +235,7 @@ $size2: 40px;
     }
 }
 
+
 .container::-webkit-scrollbar{
     width: 5px;
     height: 8px;
@@ -253,9 +256,9 @@ $size2: 40px;
     position: relative;
     background-color:$dashboard-color;
     height: 100%;
-    width: 1017px;
+    max-width: 1017px;
     top: 100px;
-    left: 283px;
+    left: 20%;
     padding-top: 60px;
     padding-left: 30px;
     overflow-x: hidden;
@@ -266,7 +269,7 @@ $size2: 40px;
         display: flex;
 
         .card {
-            width: 240px;
+            max-width: 240px;
             height: 160px;
             box-sizing: border-box;
             background: $card-color;
@@ -298,7 +301,7 @@ $size2: 40px;
     border: 1px solid rgba(33, 63, 125, 0.06);
     box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.04);
     border-radius: 4px;
-    width: 1000px;
+    max-width: 1000px;
     box-sizing: border-box;
     margin-left: 10px;
     padding-left: 20px;
@@ -319,7 +322,6 @@ $size2: 40px;
             display:inline;
             cursor: pointer;
             user-select: none;
-
         }
     }
 
@@ -348,12 +350,12 @@ $size2: 40px;
         }
     }
     
-    .table-info > td {
-        @include basic_font($ffa:$font-family_worksans, $fs:14px, $lh:16px, $c:$details-color);  
+    .table-info > div {
+        @include basic_font($ffa:$font-family_worksans, $lh:16px, $c:$details-color);  
         border-bottom: solid 0.5px rgba(33, 63, 125, 0.1);
         padding-top: 15px;
         padding-bottom: 15px; 
-        font-size:12px;
+        font-size: 11px;
             
     }    
 }
@@ -532,5 +534,3 @@ $size2: 40px;
 }
 
 /*                            End of User Details page                                                           */
-
-}

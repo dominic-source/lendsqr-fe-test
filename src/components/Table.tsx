@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import { Stack, Typography } from '@mui/material';
+import { Stack, Typography, Grid, Container, Box } from '@mui/material';
 import Details from './Details';
-
+import { solve } from './MainDashboard';
 interface Props {
     handleclick: (e: React.FormEvent) => void;
 }
@@ -78,63 +78,76 @@ const Table:React.FC <Props>= ({handleclick}) => {
         setListOfNumber([...numberList]);
 },[]);
 
+interface nameLendr {
+    name: string,
+    space: number,
+   
+}
 
+ let namesArray: nameLendr[] = [];
+ 
 
 //   list of items for the table
-    const listOfFilterItems:string[] = ['ORGANIZATION','USERNAME','EMAIL','PHONE NUMBER', 'DATE JOINED', 'STATUS']
+const listOfFilterItems:[string[],number[]] = [['ORGANIZATION','USERNAME','EMAIL','PHONE NUMBER', 'DATE JOINED', 'STATUS'],
+    [1.5, 1.75, 3, 2, 2.5, 1]]
     
+    
+for(let i = 0; i < listOfFilterItems[1].length ; ++i){
+    namesArray.push({name:listOfFilterItems[0][i], space:listOfFilterItems[1][i]})
+}
+  
+
     return (
         <div>
-            <table className='table'>
-                <thead>
-                    <tr>
-                        {listOfFilterItems.map((item, index) => <th className='table-head' key={index}>
-                            <div className='table-item' onClick={handleclick}>
-                                {item} 
-                                <img src='/filter-results-button.svg' alt='filter' className='table-icon'/>
-                            </div>  
-                            </th>)}
+            <div className="table">
+                <Grid container >
+                    {namesArray.map((item) => {return (<Grid xs={10} sm={item.space} md={item.space} className='table-head'>
+                        <div className='table-item' onClick={handleclick}>
+                            {item.name}
+                            <img src='/filter-results-button.svg' alt='filter' className='table-icon'/>
+                        </div>  
+                    </Grid>)})}
+                    
+                    <Grid xs={10} sm={1.5} md={0.25} className='table-head'></Grid>
+                </Grid>
+                        {state.map((item:{
+                            id:number,
+                            orgName: string,
+                            userName: string,
+                            email: string,
+                            phoneNumber: number,
+                            createdAt: string,
+                            lastActiveDate: string,
+                        })=>{
+                            return ( <Grid container key={item.id} className='table-info' mt={2} mb={2}>                        
+                                <Grid xs={10} sm={1.5} md={1.5}>{item.orgName}</Grid>
+                                <Grid xs={10} sm={1.75} md={1.75}>{item.userName}</Grid>
+                                <Grid xs={10} sm={3} md={3}><Typography noWrap sx={{fontSize:'11px'}}>{item.email}</Typography></Grid>
+                                <Grid xs={10} sm={2} md={2}>{item.phoneNumber}</Grid>
+                                <Grid xs={10} sm={2.5} md={2.5}>{new Date (item.createdAt).toUTCString()}</Grid>
+                                {new Date (item.lastActiveDate).getUTCMonth() <= new Date().getUTCMonth() ? 
+                                <Grid xs={10} sm={1} md={1}><div className='active'>Active</div></Grid> : 
+                                <Grid xs={9} sm={1} md={1}><div className='inactive'>Inactive</div></Grid>}
+                                <Grid xs={1} sm={0.25} md={0.25} key={item.id} 
+                                    onClick = {()=> setDetails({id:Number(item.id), state: !details.state})} >
+                                    &nbsp;&nbsp;
+                                    <img src='/Vector.svg' alt='click me' className='dots'/>&nbsp;&nbsp;
+                                   { Number(item.id) === details.id && 
+                                   <Details id= {item.id} visibility={details.state} />}
+                                </Grid>
+                            </Grid>
+                            )
+                        })
+                        }
                         
-                    </tr>
-                </thead>
-                    
-                <tbody>
-                    
-                    {state.map((item:{
-                        id:number,
-                        orgName: string,
-                        userName: string,
-                        email: string,
-                        phoneNumber: number,
-                        createdAt: string,
-                        lastActiveDate: string,
-                    })=>{
-                        return ( <tr key={item.id} className='table-info'>                        
-                            <td>{item.orgName}</td>
-                            <td>{item.userName}</td>
-                            <td>{item.email}</td>
-                            <td>{item.phoneNumber}</td>
-                            <td>{new Date (item.createdAt).toUTCString()}</td>
-                            {new Date (item.lastActiveDate).getUTCMonth() <= new Date().getUTCMonth() ? 
-                            <td><div className='active'>Active</div></td> : 
-                            <td><div className='inactive'>Inactive</div></td>}
-                            <td key={item.id} 
-                                onClick = {()=> setDetails({id:Number(item.id), state: !details.state})} >
-                                &nbsp;&nbsp;
-                                <img src='/Vector.svg' alt='click me' className='dots'/>&nbsp;&nbsp;
-                               { Number(item.id) === details.id && 
-                               <Details id= {item.id} visibility={details.state} />}
-                            </td>
-                        </tr>)
-                    })
-                    }
-                </tbody>   
-            </table>
+            </div>       
+            
             <Stack direction='row'
                     spacing={3}
                     justifyContent='flex-start'
                     mb={4}
-                    pl={1}>
+                    pl={1}
+                    >
                 <Typography>Showing</Typography>
                 <select>
                     {listOfNumber.map((item) => {

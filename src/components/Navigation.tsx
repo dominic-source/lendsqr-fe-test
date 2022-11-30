@@ -3,7 +3,8 @@ import {  Box,
     Avatar,
     MenuItem,
     FormControl,
-    Stack
+    Stack,
+    Grid,
 } from '@mui/material'; 
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import SearchIcon from '@mui/icons-material/Search';
@@ -21,45 +22,44 @@ const Navigation:React.FC = () => {
 
     return(
       <div className='nav'>
-        <Stack direction='row' justifyContent="space-around"
-              alignItems="center"
-              spacing={2}
-              className='navigation'
-              >
-            <Box><img src='/lendsqr_logo.svg' alt='lendsqr logo'/></Box>
+        <Grid container  className='navigation' p={{xs:2,sm:2, md:3}} >
+            <Grid xs={12} sm={4} md={4} ><img src='/lendsqr_logo.svg' alt='lendsqr logo'/></Grid>
 
-            <div className='search_button' >
+            <Grid xs={12} sm={4} md={4}  className='search_button' >
                 <input type='text' className='search' placeholder='Search for anything' />
                 <Box className='search_icon'>
                     <Box className='icon'><SearchIcon /></Box>
                 </Box>
-            </div>
-          <Stack direction='row' justifyContent="space-around"
-              alignItems="center"
-              spacing={2}>
-            <a href='/' className='top-anchor-tag'>Docs</a>
+            </Grid>
 
-            <Box>
-                <NotificationsOutlinedIcon className='icon-notification'/>
-            </Box>
+            <Grid xs={12} sm={4} md={4}>
+              <Stack direction='row' justifyContent="space-around"
+                  alignItems="center"
+                  spacing={2}>
+                <a href='/' className='top-anchor-tag'>Docs</a>
 
-            <Avatar alt="smiling lady" src='/image 4.png' />
+                <Box>
+                    <NotificationsOutlinedIcon className='icon-notification'/>
+                </Box>
 
-            <FormControl sx={{ m: 1, minWidth: 120 }}>
-                <Select
-                  value={age}
-                  onChange={handleChange}
-                  displayEmpty
-                  inputProps={{ 'aria-label': 'Without label' }}
-                >
-                  <MenuItem value="" ><em>select name</em></MenuItem>
-                  <MenuItem value={10}>Adedeji</MenuItem>
-                  <MenuItem value={20}>Chinonso</MenuItem>
-                  <MenuItem value={30}>Morba</MenuItem>
-                </Select>
-            </FormControl>
-            </Stack>
-        </Stack>
+                <Avatar alt="smiling lady" src='/image 4.png' />
+
+                <FormControl sx={{ m: 1, minWidth: 80 }}>
+                    <Select
+                      value={age}
+                      onChange={handleChange}
+                      displayEmpty
+                      inputProps={{ 'aria-label': 'Without label' }}
+                    >
+                      <MenuItem value="" ><em>select name</em></MenuItem>
+                      <MenuItem value={10}>Adedeji</MenuItem>
+                      <MenuItem value={20}>Chinonso</MenuItem>
+                      <MenuItem value={30}>Morba</MenuItem>
+                    </Select>
+                </FormControl>
+              </Stack>
+            </Grid>
+          </Grid>
       </div>)
 }
 

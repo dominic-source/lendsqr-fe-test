@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { Box } from '@mui/material';
 
 
@@ -50,48 +50,69 @@ solve(settings, settingsCompletedItem)
 
 const MainDashboard:React.FC = () => {
     
+
+    const [state, setState] = useState(true);
+    
+    useEffect(() =>{
+            
+        window.addEventListener('load',(event)=>{
+            setState(!window.matchMedia('(max-width:627px)').matches)
+        });
+        
+        window.addEventListener('resize',(event) =>{
+          setState(!window.matchMedia('(max-width:627px)').matches)
+        });
+        
+        setState(!window.matchMedia('(max-width:627px)').matches)
+      },[]);
+
+
+    
+
     return (
         <div className='contains-all'>
             <div className='top-dashboard-item'>
-                                <img src='/svg/briefcase 1.svg' alt='' className='image-style' /> 
-                            <div className='top-dashboard-name'>Switch Organization</div> </div>
+                <img src='/svg/briefcase 1.svg' alt='' className='image-style' /> 
+                {state && <div className='top-dashboard-name'>Switch Organization</div>} 
+            </div>
 
 
            <div className='top-dashboard-item spacing'>
-                                <img src='/svg/home 1.svg' alt='' className='image-style' /> 
-                            <div className='top-dashboard-name top-dashboard-name-next'>Dashboard</div> </div>
+                <img src='/svg/home 1.svg' alt='' className='image-style' /> 
+                {state && <div className='top-dashboard-name top-dashboard-name-next'>Dashboard</div> }
+            </div>
 
         
-        <div className="container">
-           <Box sx={{width:'283px'}}> 
-                <div className='customers'>Customers</div>
-                    {customersCompletedItem.map((item) => {
-                            return <div className='item' tabIndex= {0} > <div className='list-of-items'>
-                                <img src={`/svg/${item.icon}.svg`} alt='' className='image-style' /> 
-                            <div className='items-name'>{item.item}</div></div></div>
-                                                            })
-                    }
-           </Box>
+            <div className="container">
+               <Box sx={{width:state?'283px':'10px'}}> 
+                    {state &&<div className='customers'>Customers</div>}
+                        {customersCompletedItem.map((item) => {
+                                return <div className='item' tabIndex= {0} > <div className='list-of-items'>
+                                    <img src={`/svg/${item.icon}.svg`} alt='' className='image-style' /> 
+                                    {state &&<div className='items-name'>{item.item}</div>}</div></div>
+                                                                })
+                        }
+               </Box>
 
-           <Box sx={{width:'283px'}}>
-                <div className='customers'>Business</div>
-                {businessesCompletedItem.map((item) => {
-                            return <div className='item' tabIndex= {0}> <div className='list-of-items'>
-                                <img src={`/svg/${item.icon}.svg`} alt='' className='image-style' /> 
-                            <div className='items-name'>{item.item}</div></div></div>
-                                                            })
-                    }
-           </Box>
-           <Box sx={{width:'283px'}}>
-                <div className='customers'>Setting</div>
-                {settingsCompletedItem.map((item) => {
-                            return <div className='item' tabIndex= {0}> <div className='list-of-items'>
-                                <img src={`/svg/${item.icon}.svg`} alt='' className='image-style' /> 
-                            <div className='items-name'>{item.item}</div></div></div>
-                                                            })
-                    }
-           </Box>
-        </div>
+               <Box sx={{width:state?'283px':'10px'}}>
+                    {state &&<div className='customers'>Business</div>}
+                    {businessesCompletedItem.map((item) => {
+                                return <div className='item' tabIndex= {0}> <div className='list-of-items'>
+                                    <img src={`/svg/${item.icon}.svg`} alt='' className='image-style' /> 
+                                    {state &&<div className='items-name'>{item.item}</div>}</div></div>
+                                                                })
+                        }
+               </Box>
+               <Box sx={{width:state?'283px':'10px'}}>
+                {state &&<div className='customers'>Setting</div>}
+                    {settingsCompletedItem.map((item) => {
+                                return <div className='item' tabIndex= {0}> <div className='list-of-items'>
+                                    <img src={`/svg/${item.icon}.svg`} alt='' className='image-style' /> 
+                                    {state &&<div className='items-name'>{item.item}</div>}</div></div>
+                                                                })
+                        }
+               </Box>
+            </div>
         </div>
     )
 }
