@@ -9,7 +9,7 @@ interface Props {
 const Table:React.FC <Props>= ({handleclick}) => {
 
     const [state, setState] = useState([]);
-    const [itemNumber, setItemNumber] = useState<number>(0);
+    const [itemNumber, setItemNumber] = useState<number>(10);
     const [details, setDetails] = useState({id:0, state: false});
     const [count, setCount] = useState<number>(100);
     const [listOfNumber, setListOfNumber] = useState<number[]>([]);
@@ -62,7 +62,7 @@ const Table:React.FC <Props>= ({handleclick}) => {
             const transaction = db.transaction("customers").objectStore("customers");
 
             // A key range value to get customer information through the id
-            const keyRangeValue = IDBKeyRange.bound(itemNumber+1, itemNumber+11);
+            const keyRangeValue = IDBKeyRange.bound(1, itemNumber);
 
             // Get all the value within the itemNumber range
             const getRequest = transaction.getAll(keyRangeValue);
@@ -122,7 +122,7 @@ for(let i = 0; i < listOfFilterItems[1].length ; ++i){
                             return ( <Grid container key={item.id} className='table-info' mt={2} mb={2}>                        
                                 <Grid xs={10} sm={1.5} md={1.5}>{item.orgName}</Grid>
                                 <Grid xs={10} sm={1.75} md={1.75}>{item.userName}</Grid>
-                                <Grid xs={10} sm={3} md={3}><Typography noWrap sx={{fontSize:'11px'}}>{item.email}</Typography></Grid>
+                                <Grid xs={10} sm={3} md={3}><Typography noWrap sx={{fontSize:'11px', letterSpacing:'0.1em'}}>{item.email}</Typography></Grid>
                                 <Grid xs={10} sm={2} md={2}>{item.phoneNumber}</Grid>
                                 <Grid xs={10} sm={2.5} md={2.5}>{new Date (item.createdAt).toUTCString()}</Grid>
                                 {new Date (item.lastActiveDate).getUTCMonth() <= new Date().getUTCMonth() ? 

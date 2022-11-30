@@ -23,16 +23,16 @@ const Navigation:React.FC = () => {
     return(
       <div className='nav'>
         <Grid container  className='navigation' p={{xs:2,sm:2, md:3}} >
-            <Grid xs={12} sm={4} md={4} ><img src='/lendsqr_logo.svg' alt='lendsqr logo'/></Grid>
+            <Grid xs={12} sm={4} md={4} mb={{xs:2,sm:0,md:0}}><img src='/lendsqr_logo.svg' alt='lendsqr logo'/></Grid>
 
-            <Grid xs={12} sm={4} md={4}  className='search_button' >
+            <Grid xs={12} sm={4} md={4}  mb={{xs:2,sm:0,md:0}} className='search_button' >
                 <input type='text' className='search' placeholder='Search for anything' />
                 <Box className='search_icon'>
                     <Box className='icon'><SearchIcon /></Box>
                 </Box>
             </Grid>
 
-            <Grid xs={12} sm={4} md={4}>
+            <Grid xs={12} sm={4} md={4} mb={{xs:2,sm:0,md:0}} >
               <Stack direction='row' justifyContent="space-around"
                   alignItems="center"
                   spacing={2}>
