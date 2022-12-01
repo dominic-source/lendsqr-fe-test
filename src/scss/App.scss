@@ -38,6 +38,28 @@ $size2: 40px;
     color: $c;
 }
 
+
+@mixin multiple_search(){
+    .search {
+        width: 80%;
+        border-radius:5px ;
+        border:#E5E5E5 1px solid;
+        padding-left: 12px;
+        @include basic_font($ffa:$font-family_worksans,$fs:17px, $lh:27px, $c:$details-color)
+    } 
+    .search:focus,.search:active {
+        outline: $primary-color 1px solid;
+    }
+    
+    .search:hover {
+        border: $primary-color 1px solid;
+    }
+    
+    .search::placeholder {
+        opacity: 0.7;
+        @include basic_font($ffa:$font-family_worksans, $fs:14px, $lh:16.42px, $c:$details-color); 
+    }
+}
 // Login page css code
 .details-login{
     @include basic_font($c:$details-color,$fs:$size);
@@ -106,26 +128,8 @@ $size2: 40px;
     width: 80%;
     height: $size2;
     box-sizing: border-box;
-
-    .search {
-        width: 80%;
-        border-radius:5px ;
-        border:#E5E5E5 1px solid;
-        padding-left: 12px;
-        @include basic_font($ffa:$font-family_worksans,$fs:17px, $lh:27px, $c:$details-color)
-    } 
-    .search:focus,.search:active {
-        outline: $primary-color 1px solid;
-    }
+    @include multiple_search();
     
-    .search:hover {
-        border: $primary-color 1px solid;
-    }
-    
-    .search::placeholder {
-        opacity: 0.7;
-        @include basic_font($ffa:$font-family_worksans, $fs:14px, $lh:16.42px, $c:$details-color); 
-    }
     
     .search_icon {
         width: 10%;
@@ -376,7 +380,8 @@ $size2: 40px;
     .search-filter{
         padding-left: 10px;
         padding-top: 20px;
-
+        @include multiple_search();
+        
         .label{
             @include basic_font($ffa:$font-family_worksans,$fw:500, $fs:14px, $lh:16px, $c:$details-color); 
         }

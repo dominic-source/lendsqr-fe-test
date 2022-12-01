@@ -351,6 +351,31 @@
   .search-control .search-filter {
     padding-left: 10px;
     padding-top: 20px; }
+    .search-control .search-filter .search {
+      width: 80%;
+      border-radius: 5px;
+      border: #E5E5E5 1px solid;
+      padding-left: 12px;
+      font-family: "work-sans", sans-serif;
+      font-size: 17px;
+      font-weight: 400;
+      line-height: 27px;
+      letter-spacing: 0.1em;
+      text-align: left;
+      color: #545F7D; }
+    .search-control .search-filter .search:focus, .search-control .search-filter .search:active {
+      outline: #39CDCC 1px solid; }
+    .search-control .search-filter .search:hover {
+      border: #39CDCC 1px solid; }
+    .search-control .search-filter .search::placeholder {
+      opacity: 0.7;
+      font-family: "work-sans", sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 16.42px;
+      letter-spacing: 0.1em;
+      text-align: left;
+      color: #545F7D; }
     .search-control .search-filter .label {
       font-family: "work-sans", sans-serif;
       font-size: 14px;

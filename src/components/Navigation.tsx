@@ -12,6 +12,7 @@ import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsNoneOutl
 import '../css/App.css';
 
 
+// This function component will displays items on the top of the screen
 const Navigation:React.FC = () => {
 
   const [age, setAge] = React.useState('');
@@ -25,6 +26,7 @@ const Navigation:React.FC = () => {
         <Grid container  className='navigation' p={{xs:2,sm:2, md:3}} >
             <Grid xs={12} sm={4} md={4} mb={{xs:2,sm:0,md:0}}><img src='/lendsqr_logo.svg' alt='lendsqr logo'/></Grid>
 
+{/*          This is the search button component to enable you search for users        */}
             <Grid xs={12} sm={4} md={4}  mb={{xs:2,sm:0,md:0}} className='search_button' >
                 <input type='text' className='search' placeholder='Search for anything' />
                 <Box className='search_icon'>
@@ -36,6 +38,7 @@ const Navigation:React.FC = () => {
               <Stack direction='row' justifyContent="space-around"
                   alignItems="center"
                   spacing={2}>
+                {/*         This is the link to the documentation of the page                            */}
                 <a href='/' className='top-anchor-tag'>Docs</a>
 
                 <Box>

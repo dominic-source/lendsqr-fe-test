@@ -95,7 +95,7 @@ const Login:React.FC = () => {
                         sx={{   '& > :not(style)': { m: 1, width: '70%' }, }} 
                         noValidate 
                         autoComplete="off" >
-                    <Stack spacing={2} direction="column">
+                    <Stack spacing={2} direction="column" >
                         <CssTextField id="outlined-basic" label="Email" variant="outlined" />
                         <CssFormControl variant="outlined">
                                 <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
