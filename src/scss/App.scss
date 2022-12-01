@@ -254,7 +254,7 @@ $size2: 40px;
     position: relative;
     background-color:$dashboard-color;
     height: 100%;
-    max-width: 1017px;
+    max-width: 75%;
     top: 100px;
     left: 20%;
     padding-top: 60px;
@@ -268,7 +268,7 @@ $size2: 40px;
 
         .card {
             max-width: 240px;
-            height: 160px;
+            height: 90%;
             box-sizing: border-box;
             background: $card-color;
             border: 1px solid rgba(33, 63, 125, 0.06);
@@ -299,7 +299,7 @@ $size2: 40px;
     border: 1px solid rgba(33, 63, 125, 0.06);
     box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.04);
     border-radius: 4px;
-    max-width: 1000px;
+    max-width: 96%;
     box-sizing: border-box;
     margin-left: 10px;
     padding-left: 20px;

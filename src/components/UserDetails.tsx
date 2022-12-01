@@ -98,7 +98,7 @@ const UserDetails:React.FC = () => {
   let { id } = useParams();
 
  // Opening Database
- const request = indexedDB.open("Lendsqr_webapp_Database", 3);
+ const request = window.indexedDB.open("Lendsqr_webapp_Database", 3);
 
  useEffect(()=>{
   request.onsuccess = (event: any) => {

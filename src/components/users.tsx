@@ -33,7 +33,7 @@ const Users:React.FC = () => {
                         <Grid xs={10} sm={3} md={2.7} className='card'> 
                         <img src={`/${item.icon}.svg`} alt='' width='40px' height='40px'/>
                         <Typography mt={2} mb={2}> {item.item} </Typography>
-                        <Typography className='number-of-users'>{(item.id+1)*3564}</Typography>
+                        <Typography className='number-of-users' pb={1}>{(item.id+1)*3564}</Typography>
                         </Grid>
                     )
                 })}

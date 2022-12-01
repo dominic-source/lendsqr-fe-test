@@ -6,6 +6,12 @@ interface Props {
     handleclick: (e: React.FormEvent) => void;
 }
 
+
+const handleNumberClick = (e:any) => {
+    e.preventDefault();
+    e.stopPropagation();
+    console.log(e.keyCode);
+}
 const Table:React.FC <Props>= ({handleclick}) => {
 
     const [state, setState] = useState([]);
@@ -22,7 +28,7 @@ const Table:React.FC <Props>= ({handleclick}) => {
 
     
     // Opening Database
-    const request = indexedDB.open("Lendsqr_webapp_Database", 3);
+    const request = window.indexedDB.open("Lendsqr_webapp_Database", 3);
 
     // Check for errors in the database creation
     request.onerror = (event: any) => {
@@ -149,15 +155,17 @@ for(let i = 0; i < listOfFilterItems[1].length ; ++i){
                     pl={1}
                     >
                 <Typography>Showing</Typography>
-                <select>
-                    {listOfNumber.map((item) => {
-                        
-                        let select:boolean = false;
-                        if(item===count){
-                            select = true;
-                        }
-                        return <option selected={select}>{item}</option>})}
-                </select>
+                <form>
+                    <select>
+                        {listOfNumber.map((item) => {
+
+                            let select:boolean = false;
+                            if(item===itemNumber){
+                                select = true;
+                            }
+                            return <option selected={select} onChange={handleNumberClick}>{item}</option>})}
+                    </select>
+                </form>
                 <Typography>out of {count}</Typography>
             </Stack>
         </div>
