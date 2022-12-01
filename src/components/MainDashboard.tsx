@@ -26,16 +26,16 @@ let businesses: generalType = [['Organization','Loan Products','Savings Products
                             'galaxy 1', 'user-cog 1', 'scroll 1','chart-bar 2'
                         ]];
 
-
 let settings: generalType = [['Preferences','Fees and Pricing','Audit Logs'],
                                 ['sliders-h 1','badge-percent 1', 'clipboard-list 1']];
 /*                              End                                       */
 
+// Defines the type for each of the items
 let customersCompletedItem: dashboardItem[] = []; 
 let businessesCompletedItem: dashboardItem[] = [];
 let settingsCompletedItem: dashboardItem[] = [];
 
-
+// A function that forms the arrays into an object and pushes it into the array with type dashboardItem[]
 function solve(items:generalType, completedItems:dashboardItem[]) {
 
     for(let i = 0; i < items[1].length ; ++i){
@@ -43,18 +43,18 @@ function solve(items:generalType, completedItems:dashboardItem[]) {
     }
 }
 
+// This calls the solve function with the arguments described therein
 solve(customers, customersCompletedItem)
 solve(businesses, businessesCompletedItem)
 solve(settings, settingsCompletedItem)
 
-
+// This function component returns a component design for the left side dashboard
 const MainDashboard:React.FC = () => {
     
-
     const [state, setState] = useState(true);
     
+    // This will set the detect the width of the screen and set the state of the app to fit the screen
     useEffect(() =>{
-            
         window.addEventListener('load',(event)=>{
             setState(!window.matchMedia('(max-width:627px)').matches)
         });
@@ -66,8 +66,6 @@ const MainDashboard:React.FC = () => {
         setState(!window.matchMedia('(max-width:627px)').matches)
       },[]);
 
-
-    
 
     return (
         <div className='contains-all'>
@@ -118,4 +116,6 @@ const MainDashboard:React.FC = () => {
 }
 
 export default MainDashboard;
+
+// Solve is exported to be used in other components
 export {solve};
