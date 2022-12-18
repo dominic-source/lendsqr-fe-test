@@ -107,14 +107,14 @@ for(let i = 0; i < listOfFilterItems[1].length ; ++i){
         <div>
             <div className="table">
                 <Grid container >
-                    {namesArray.map((item) => {return (<Grid xs={10} sm={item.space} md={item.space} className='table-head'>
+                    {namesArray.map((item) => {return (<Grid item xs={10} sm={item.space} md={item.space} className='table-head'>
                         <div className='table-item' onClick={handleclick}>
                             {item.name}
                             <img src='/filter-results-button.svg' alt='filter' className='table-icon'/>
                         </div>  
                     </Grid>)})}
                     
-                    <Grid xs={10} sm={1.5} md={0.25} className='table-head'></Grid>
+                    <Grid item xs={10} sm={1.5} md={0.25} className='table-head'></Grid>
                 </Grid>
                         {state.map((item:{
                             id:number,
@@ -126,15 +126,15 @@ for(let i = 0; i < listOfFilterItems[1].length ; ++i){
                             lastActiveDate: string,
                         })=>{
                             return ( <Grid container key={item.id} className='table-info' mt={2} mb={2}>                        
-                                <Grid xs={10} sm={1.5} md={1.5}>{item.orgName}</Grid>
-                                <Grid xs={10} sm={1.75} md={1.75}>{item.userName}</Grid>
-                                <Grid xs={10} sm={3} md={3}><Typography noWrap sx={{fontSize:'11px', letterSpacing:'0.1em'}}>{item.email}</Typography></Grid>
-                                <Grid xs={10} sm={2} md={2}>{item.phoneNumber}</Grid>
-                                <Grid xs={10} sm={2.5} md={2.5}>{new Date (item.createdAt).toUTCString()}</Grid>
+                                <Grid item xs={10} sm={1.5} md={1.5}>{item.orgName}</Grid>
+                                <Grid item xs={10} sm={1.75} md={1.75}>{item.userName}</Grid>
+                                <Grid item xs={10} sm={3} md={3}><Typography noWrap sx={{fontSize:'11px', letterSpacing:'0.1em'}}>{item.email}</Typography></Grid>
+                                <Grid item xs={10} sm={2} md={2}>{item.phoneNumber}</Grid>
+                                <Grid item xs={10} sm={2.5} md={2.5}>{new Date (item.createdAt).toUTCString()}</Grid>
                                 {new Date (item.lastActiveDate).getUTCMonth() <= new Date().getUTCMonth() ? 
-                                <Grid xs={10} sm={1} md={1}><div className='active'>Active</div></Grid> : 
-                                <Grid xs={9} sm={1} md={1}><div className='inactive'>Inactive</div></Grid>}
-                                <Grid xs={1} sm={0.25} md={0.25} key={item.id} 
+                                <Grid item xs={10} sm={1} md={1}><div className='active'>Active</div></Grid> : 
+                                <Grid item xs={9} sm={1} md={1}><div className='inactive'>Inactive</div></Grid>}
+                                <Grid item xs={1} sm={0.25} md={0.25} key={item.id} 
                                     onClick = {()=> setDetails({id:Number(item.id), state: !details.state})} >
                                     &nbsp;&nbsp;
                                     <img src='/Vector.svg' alt='click me' className='dots'/>&nbsp;&nbsp;

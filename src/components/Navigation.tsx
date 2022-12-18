@@ -18,23 +18,33 @@ const Navigation:React.FC = () => {
   const [age, setAge] = React.useState('');
 
   const handleChange = (event: SelectChangeEvent) => {
+    console.log('Changed!!!');
     setAge(event.target.value);
   };
 
+  const handleClick = (event: React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>) => {
+    console.log('clicked!!!')
+  }
     return(
       <div className='nav'>
         <Grid container  className='navigation' p={{xs:2,sm:2, md:3}} >
-            <Grid xs={12} sm={4} md={4} mb={{xs:2,sm:0,md:0}}><img src='/lendsqr_logo.svg' alt='lendsqr logo'/></Grid>
+            <Grid item xs={12} sm={4} md={4} mb={{xs:2,sm:0,md:0}}><img src='/lendsqr_logo.svg' alt='lendsqr logo'/></Grid>
 
 {/*          This is the search button component to enable you search for users        */}
-            <Grid xs={12} sm={4} md={4}  mb={{xs:2,sm:0,md:0}} className='search_button' >
-                <input type='text' className='search' placeholder='Search for anything' />
+            <Grid item xs={12} sm={4} md={4}  mb={{xs:2,sm:0,md:0}} className='search_button' >
+                <input 
+                  type='text' 
+                  className='search' 
+                  data-id='This is a search button' 
+                  placeholder='Search for anything' 
+                  onClick={handleClick} />
+
                 <Box className='search_icon'>
                     <Box className='icon'><SearchIcon /></Box>
                 </Box>
             </Grid>
 
-            <Grid xs={12} sm={4} md={4} mb={{xs:2,sm:0,md:0}} >
+            <Grid item xs={12} sm={4} md={4} mb={{xs:2,sm:0,md:0}} >
               <Stack direction='row' justifyContent="space-around"
                   alignItems="center"
                   spacing={2}>

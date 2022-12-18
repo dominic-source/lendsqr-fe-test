@@ -84,8 +84,8 @@ const MainDashboard:React.FC = () => {
             <div className="container">
                <Box sx={{width:state?'283px':'10px'}}> 
                     {state &&<div className='customers'>Customers</div>}
-                        {customersCompletedItem.map((item) => {
-                                return <div className='item' tabIndex= {0} > <div className='list-of-items'>
+                        {customersCompletedItem.map((item,index) => {
+                                return <div key={index} className='item' tabIndex= {0} > <div className='list-of-items'>
                                     <img src={`/svg/${item.icon}.svg`} alt='' className='image-style' /> 
                                     {state &&<div className='items-name'>{item.item}</div>}</div></div>
                                                                 })
@@ -94,8 +94,8 @@ const MainDashboard:React.FC = () => {
 
                <Box sx={{width:state?'283px':'10px'}}>
                     {state &&<div className='customers'>Business</div>}
-                    {businessesCompletedItem.map((item) => {
-                                return <div className='item' tabIndex= {0}> <div className='list-of-items'>
+                    {businessesCompletedItem.map((item,index) => {
+                                return <div key={index} className='item' tabIndex= {0}> <div className='list-of-items'>
                                     <img src={`/svg/${item.icon}.svg`} alt='' className='image-style' /> 
                                     {state &&<div className='items-name'>{item.item}</div>}</div></div>
                                                                 })
@@ -103,8 +103,8 @@ const MainDashboard:React.FC = () => {
                </Box>
                <Box sx={{width:state?'283px':'10px'}}>
                 {state &&<div className='customers'>Setting</div>}
-                    {settingsCompletedItem.map((item) => {
-                                return <div className='item' tabIndex= {0}> <div className='list-of-items'>
+                    {settingsCompletedItem.map((item,index) => {
+                                return <div key={index} className='item' tabIndex= {0}> <div className='list-of-items'>
                                     <img src={`/svg/${item.icon}.svg`} alt='' className='image-style' /> 
                                     {state &&<div className='items-name'>{item.item}</div>}</div></div>
                                                                 })

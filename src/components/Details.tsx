@@ -1,17 +1,20 @@
 import React from 'react';
-import {Stack} from '@mui/material';
-
+import { Stack } from '@mui/material';
+// import { useAutoAnimate } from '@formkit/auto-animate/react';
+ 
 interface Props {
     id: number;
     visibility: boolean;
 }
 
 
+
 // A function that pops up a box providing link to the details page of a user.
 const Details:React.FC <Props>= ({id,visibility})=> {
+    
 
     return (
-       <>{visibility && <div className='details'>
+       <>{visibility && <div className='details' >
             <Stack direction='column' justifyContent="space-around"
               alignItems="left"
               spacing={2}

@@ -24,13 +24,13 @@ const Users:React.FC = () => {
     const handleClick = () => filter?setFilter(false):setFilter(true);
 
     return (
-        <div className='top-covering-all-item'>
+        <div className='top-covering-all-item' role='button'>
             <Typography className='users'>Users</Typography>
             {/* This are the top boxes for users experience */}
             <Grid container className='top'>
-                {iconsArray.map((item) =>  {
+                {iconsArray.map((item, index) =>  {
                     return(
-                        <Grid xs={10} sm={3} md={2.7} className='card'> 
+                        <Grid item key={index} xs={10} sm={3} md={2.7} className='card'> 
                         <img src={`/${item.icon}.svg`} alt='' width='40px' height='40px'/>
                         <Typography mt={2} mb={2}> {item.item} </Typography>
                         <Typography className='number-of-users' pb={1}>{(item.id+1)*3564}</Typography>
@@ -43,6 +43,7 @@ const Users:React.FC = () => {
                 <Table handleclick = {handleClick} />
                 {filter && <Search/>}
             </div>
+
         </div>
     )
 }

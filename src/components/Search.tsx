@@ -36,7 +36,7 @@ const Search:React.FC = () => {
                             className="search input-style" />
                         </Fragment>)})}
                 </form>
-                    <div className="buttons">
+                    <div className="buttons" role='group'>
                         <button className="reset" type="submit">Reset</button>
                         <button className="filter" type="submit">Filter</button>
                     </div>

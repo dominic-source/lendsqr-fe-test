@@ -10,15 +10,12 @@ import { Typography,
          InputLabel,
          InputAdornment,
          FormControl,
-         Container,
        } from '@mui/material';     
 import '../css/App.css';
 import '../css/AppMobile.css';
 import { styled } from '@mui/material/styles';
-interface State {
-    password: string;
-    showPassword: boolean;
-  }
+import { LoginService} from '../services/LoginServices';
+
 
 const CssTextField = styled(TextField)({
     '& label.Mui-focused': {
@@ -49,18 +46,49 @@ const CssFormControl = styled(FormControl)({
 })
 
 
+interface State {
+  email: string
+  password: string;
+  showPassword: boolean;
+  isLoggedIn: string | boolean;
+  logInAttempted: boolean;
+}
+
 const Login:React.FC = () => {
 
     const [values, setValues] = useState<State>({
+        email:'',
         password: '',
         showPassword: false,
+        isLoggedIn: false,
+        logInAttempted: false,
       });
-    
+      
+      const loginService: LoginService= new LoginService();
+
+      const handleSubmit = async (event: React.MouseEvent<HTMLAnchorElement>)=>{
+        event.preventDefault();
+
+
+        const loginResponse = await loginService.login(
+          values.email, values.password);
+
+        setValues({
+          ...values,
+          logInAttempted: true,
+          isLoggedIn: loginResponse
+        });
+        console.log(values, loginResponse)
+      }
+      
+      let loginLabel = values.logInAttempted && values.isLoggedIn? 
+      <Box>Login Successful</Box>: <Box>Login failed</Box> 
+
       const handleChange =
         (prop: keyof State) => (event: React.ChangeEvent<HTMLInputElement>) => {
           setValues({ ...values, [prop]: event.target.value });
         };
-    
+
       const handleClickShowPassword = () => {
         setValues({
           ...values,
@@ -76,7 +104,7 @@ const Login:React.FC = () => {
     return (
         <div>
             <Grid container spacing={{xs:0,sm:3, md:5}}>
-                <Grid  xs={12} sm={5} md={5} sx={{pl:{xs:0, sm:6,md:12},pt:{sm:10,md:15}, bgcolor:'rgb(229, 229, 229,0.2)'}}>
+                <Grid xs={12} sm={5} md={5} sx={{pl:{xs:0, sm:6,md:12},pt:{sm:10,md:15}, bgcolor:'rgb(229, 229, 229,0.2)'}}>
                 
                     <Box pb={{xs:1,sm:5,md:10}}>
                         <img src='lendsqr_logo.svg' alt='lendsqr logo'/>
@@ -85,7 +113,7 @@ const Login:React.FC = () => {
                         <img src='pablo-sign-in 1.svg' alt='lendsqr' className='img'/>
                     </Box>
                 </Grid>
-                <Grid  xs={12} sm={5} md={5} sx={{pl:{xs:0, sm:10,md:15}, pt:{sm:10,md:25}}}>
+                <Grid xs={12} sm={5} md={5} sx={{pl:{xs:0, sm:10,md:15}, pt:{sm:10,md:25}}}>
                 <Box p={1} sx={{ pb: {xs: 1, sm: 2,md: 4 }}}>
                     <h1 className='welcome_color'>Welcome!</h1>
                     <Typography className="details-login">Enter details to login.</Typography>
@@ -96,7 +124,12 @@ const Login:React.FC = () => {
                         noValidate 
                         autoComplete="off" >
                     <Stack spacing={2} direction="column" >
-                        <CssTextField id="outlined-basic" label="Email" variant="outlined" />
+                        <CssTextField 
+                          id="outlined-basic" 
+                          label="Email" 
+                          variant="outlined" 
+                          onChange={handleChange('email')} 
+                          value={values.email} />
                         <CssFormControl variant="outlined">
                                 <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
                                 <OutlinedInput
@@ -121,10 +154,13 @@ const Login:React.FC = () => {
                                 />
                         </CssFormControl>
                         <Typography variant='button' className='forgot_password_style'>FORGOT PASSWORD?</Typography>
-                        <Button variant="contained" className='login' href='/dashboard' >LOG IN</Button>  
+                        <Button variant="contained" className='login' href='' onClick={handleSubmit}>LOG IN</Button>  
                     </Stack>
                 </Box>
-                </Grid>
+              </Grid>
+              <Grid xs={12} sm={5} md={5} sx={{pl:{xs:0, sm:10,md:15}, pt:{sm:10,md:25}}}>
+                {values.logInAttempted && loginLabel}
+              </Grid>
             </Grid>
         </div>
     )
