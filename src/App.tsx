@@ -16,6 +16,9 @@ const App: React.FC  = () => {
     <Router>
       
       <Routes>
+        {/* The route to the Landing page */}
+        <Route path="/" element={<Login />} />  
+       
         {/* The route to the LOGIN page */}
         <Route path="/login" element={<Login />} />  
 
