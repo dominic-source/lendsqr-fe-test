@@ -30,7 +30,7 @@ const Search:React.FC = () => {
         <div className="search-control">
             <div className="search-filter">
                 <form>
-                    {completedItems.map((item)=> { return(<Fragment>
+                    {completedItems.map((item, index)=> { return(<Fragment key={index}>
                         <label htmlFor={item.htmlFor} className="label">{item.htmlFor}</label>
                         <input type={item.inputType} placeholder={item.htmlFor} id={item.htmlFor} 
                             className="search input-style" />

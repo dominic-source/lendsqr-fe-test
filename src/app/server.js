@@ -1,7 +1,6 @@
 const express = require ('express');
 const bodyParser = require('body-parser');
-// import express from 'express';
-// import bodyParser from 'body-parser';
+
 
 const app = express();
 
@@ -23,8 +22,7 @@ app.use(bodyParser.json());
  app.post('/login',(req, res) => {
     let password = req.body.password;
     let email = req.body.email;
-    res.send('validated');
-    
-  })
+    res.send(true);
+  });
 
 app.listen('3002', () =>   console.log("Server is connected!"));

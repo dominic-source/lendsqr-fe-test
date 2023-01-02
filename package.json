@@ -24,10 +24,11 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "app": "nodemon src/app/server.js ",
     "build:css": "node-sass src/scss -o src/css ",
     "watch:css": "npm run build:css && node-sass src/scss -o src/css -w -r",
     "start:js": "react-scripts start",
-    "start": "npm-run-all -p watch:css start:js",
+    "start": "npm-run-all -p watch:css start:js app",
     "build:js": "react-scripts build",
     "build": "npm-run-all build:*",
     "test": "react-scripts test --env=jsdom",

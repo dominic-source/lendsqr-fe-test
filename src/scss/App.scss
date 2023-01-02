@@ -298,6 +298,70 @@ $size2: 40px;
 /*                            End of Users section                                             */
 
 /*                              List of Users section                                          */
+
+.greater_than, .less_than {
+    width: 8px;
+    height: 8px;
+    border-style: solid;
+    border-left-width: 2px;
+    border-bottom-width: 2px;
+    border-top-width: 0px;
+    border-right-width: 0px;
+    border-color: $welcome-color;
+    transform: rotate(45deg);
+    margin: auto;
+    margin-top: 5px;
+}
+
+.greater_than {
+    transform: rotate(225deg)
+}
+
+.numbering {
+    @include basic_font($ffa:$font-family_worksans, $fs:16px, $lh:19px, $fw:400, $c:$details-color); 
+    opacity: 0.6;
+    cursor: pointer;
+}
+
+.numbering:hover, .numbering:hover, .numbering:focus, .numbering:focus {
+    opacity: 1;
+}
+
+.numbering_focus {
+    @include basic_font($ffa:$font-family_worksans, $fs:18px, $lh:19px, $fw:500, $c:$details-color);     
+}
+
+.previous, .next {
+    background:rgba(33, 63, 125, 0.1);
+    border-radius: 4px;
+    width: 24px;
+    height: 24px;
+    text-align: center;
+    padding-top: 3px;
+    color: $welcome-color;
+    font-weight: 900;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.previous:hover, .next:hover, .previous:focus, .next:focus {
+    opacity: 1;
+}
+.next_opacity {
+    opacity: 0.6;
+}
+
+.select {
+    width: 50px;
+    height: 35px;
+    border: 0px;
+    outline: 0px;
+    border-radius: 4px;
+    background: rgba(33, 63, 125, 0.1);
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
 .table {
     background: $card-color;
     border: 1px solid rgba(33, 63, 125, 0.06);

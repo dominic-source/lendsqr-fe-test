@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import { Box } from '@mui/material';
+import Resize from '../app/resize';
 
 
 
@@ -55,15 +56,9 @@ const MainDashboard:React.FC = () => {
     
     // This will set the detect the width of the screen and set the state of the app to fit the screen
     useEffect(() =>{
-        window.addEventListener('load',(event)=>{
+        Resize(() => {
             setState(!window.matchMedia('(max-width:627px)').matches)
-        });
-        
-        window.addEventListener('resize',(event) =>{
-          setState(!window.matchMedia('(max-width:627px)').matches)
-        });
-        
-        setState(!window.matchMedia('(max-width:627px)').matches)
+        })
       },[]);
 
 

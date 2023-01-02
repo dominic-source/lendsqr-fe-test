@@ -3,11 +3,13 @@
 import App from './App';
 import Login from './pages/Login';
 import Navigation from './components/Navigation';
-import { fireEvent, render, screen, waitFor} from '@testing-library/react';
+import { fireEvent, render, screen, waitFor, within} from '@testing-library/react';
 import * as ReactDOM from 'react-dom';
 import React from 'react';
 import { LoginService } from './services/LoginServices';
 import Search from './components/Search';
+import userEvent from '@testing-library/user-event';
+import NextPage from './components/nextpage';
 
 
 // describe('Navigation component tests', ()=> {
@@ -88,12 +90,36 @@ import Search from './components/Search';
 
 // })
 
+const handleclickNext = (name:string) => {
+  return () => {
+
+  }
+}
+
 describe('any components behaviour when the user interacts with the website', ()=> {
 
-  it("Should render table correctly", ()=> {
+  it("Should render search correctly", ()=> {
     render(<Search />)
-    const element = screen.getByRole('group')
+    const element = screen.getByRole('group');
+    expect(element).toBeInTheDocument();
+
+    const group = screen.getByRole('group');
+    within(group).getByRole('button', {  name: /reset/i});
+  });
+
+  it("Should click correctly", async ()=> {
+    render(<Search />)
+    const element = screen.queryByRole('group');
+    // await userEvent.click(element);
     expect(element).toBeInTheDocument();
   });
+
+  it("should render the nextPage container appropriately", () => {
+    render(<NextPage listOfNumber={[1,2,3]} start={1} handleClickNext={handleclickNext} />)
+    const element = screen.queryByRole('numbering');
+    expect(element).toBeVisible();
+    expect(element).toBeInTheDocument();
+
+  })
 
 });

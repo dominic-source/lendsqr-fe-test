@@ -1,32 +1,42 @@
 import React, {useEffect, useState} from 'react';
-import { Stack, Typography, Grid, Container, Box } from '@mui/material';
+import { Stack, Typography, Grid } from '@mui/material';
 import Details from './Details';
-import { solve } from './MainDashboard';
+import NextPage from './nextpage';
+import Resize from '../app/resize';
+
 interface Props {
     handleclick: (e: React.FormEvent) => void;
 }
 
-
-const handleNumberClick = (e:any) => {
-    e.preventDefault();
-    e.stopPropagation();
-    console.log(e.keyCode);
-}
 const Table:React.FC <Props>= ({handleclick}) => {
 
     const [state, setState] = useState([]);
-    const [itemNumber, setItemNumber] = useState<number>(10);
+    const [start, setStart] = useState<number>(1);
+    const [itemNumber, setItemNumber] = useState<number>(16);
     const [details, setDetails] = useState({id:0, state: false});
     const [count, setCount] = useState<number>(100);
     const [listOfNumber, setListOfNumber] = useState<number[]>([]);
+    const [smallVisible, setSmallVisible] = useState(true)
+
+    const handleNumberClick = (e: React.ChangeEvent<HTMLSelectElement> )  => {
+        let begin = e.currentTarget.value;
+        setStart(Number(begin)-16)
+    }
+
+    const handleclickNext = (name:string) => {
+        return () => {
+            name === 'previous'? start >= 1 && setStart(start-1):setStart(start+1) 
+            name === 'previous'? 
+                                itemNumber >= 16 && setItemNumber(itemNumber-1):
+                                setItemNumber(itemNumber+1) 
+        }
+    }
 
     const url:string = 'https://6270020422c706a0ae70b72c.mockapi.io/lendsqr/api/v1/users';
-    let numberList:number[] = [];
-
+    
     // Fetch data from the url string
     const data = fetch(url);
 
-    
     // Opening Database
     const request = window.indexedDB.open("Lendsqr_webapp_Database", 3);
 
@@ -68,7 +78,7 @@ const Table:React.FC <Props>= ({handleclick}) => {
             const transaction = db.transaction("customers").objectStore("customers");
 
             // A key range value to get customer information through the id
-            const keyRangeValue = IDBKeyRange.bound(1, itemNumber);
+            const keyRangeValue = IDBKeyRange.bound(1, count);
 
             // Get all the value within the itemNumber range
             const getRequest = transaction.getAll(keyRangeValue);
@@ -76,18 +86,23 @@ const Table:React.FC <Props>= ({handleclick}) => {
                 let results = getRequest.result;
                     setState(results);
             }
+            const arrayOfNumber:number[] = [] 
+            // Push numbers to numberList
+            for(let number:number= 1; number < count+1; ++number){
+                arrayOfNumber.push(number)
+            }
+            setListOfNumber(arrayOfNumber)
+
         }
-        // Push numbers to numberList
-        for(let number:number= 1; number < count+1; number++){
-            numberList.push(number);
-        }
-        setListOfNumber([...numberList]);
+        Resize(() => {
+            setSmallVisible(!window.matchMedia('(max-width:627px)').matches)
+        }) 
+
 },[]);
 
 interface nameLendr {
     name: string,
     space: number,
-   
 }
 
  let namesArray: nameLendr[] = [];
@@ -110,13 +125,13 @@ for(let i = 0; i < listOfFilterItems[1].length ; ++i){
                     {namesArray.map((item) => {return (<Grid item xs={10} sm={item.space} md={item.space} className='table-head'>
                         <div className='table-item' onClick={handleclick}>
                             {item.name}
-                            <img src='/filter-results-button.svg' alt='filter' className='table-icon'/>
+                            {smallVisible && <img src='/filter-results-button.svg' alt='filter' className='table-icon'/>}
                         </div>  
                     </Grid>)})}
                     
-                    <Grid item xs={10} sm={1.5} md={0.25} className='table-head'></Grid>
+                    <Grid item xs={12} sm={1.5} md={0.25} className='table-head'></Grid>
                 </Grid>
-                        {state.map((item:{
+                    {state.map((item:{
                             id:number,
                             orgName: string,
                             userName: string,
@@ -124,50 +139,58 @@ for(let i = 0; i < listOfFilterItems[1].length ; ++i){
                             phoneNumber: number,
                             createdAt: string,
                             lastActiveDate: string,
-                        })=>{
-                            return ( <Grid container key={item.id} className='table-info' mt={2} mb={2}>                        
-                                <Grid item xs={10} sm={1.5} md={1.5}>{item.orgName}</Grid>
-                                <Grid item xs={10} sm={1.75} md={1.75}>{item.userName}</Grid>
-                                <Grid item xs={10} sm={3} md={3}><Typography noWrap sx={{fontSize:'11px', letterSpacing:'0.1em'}}>{item.email}</Typography></Grid>
-                                <Grid item xs={10} sm={2} md={2}>{item.phoneNumber}</Grid>
-                                <Grid item xs={10} sm={2.5} md={2.5}>{new Date (item.createdAt).toUTCString()}</Grid>
+                        },index)=>
+                            
+                            index >= start && index <= start+15 && <Grid container key={item.id} className='table-info' mt={2} mb={2}>                        
+                                <Grid item xs={12} sm={1.5} md={1.5}>{item.orgName}</Grid>
+                                <Grid item xs={12} sm={1.75} md={1.75}>{item.userName}</Grid>
+                                <Grid item xs={12} sm={3} md={3}><Typography noWrap sx={{fontSize:'11px', letterSpacing:'0.1em'}}>{item.email}</Typography></Grid>
+                                <Grid item xs={12} sm={2} md={2}>{item.phoneNumber}</Grid>
+                                <Grid item xs={12} sm={2.5} md={2.5}>{new Date (item.createdAt).toUTCString()}</Grid>
                                 {new Date (item.lastActiveDate).getUTCMonth() <= new Date().getUTCMonth() ? 
-                                <Grid item xs={10} sm={1} md={1}><div className='active'>Active</div></Grid> : 
-                                <Grid item xs={9} sm={1} md={1}><div className='inactive'>Inactive</div></Grid>}
-                                <Grid item xs={1} sm={0.25} md={0.25} key={item.id} 
+                                <Grid item xs={12} sm={1} md={1}><div className='active'>Active</div></Grid> : 
+                                <Grid item xs={10} sm={1} md={1}><div className='inactive'>Inactive</div></Grid>}
+                                <Grid item xs={2} sm={0.25} md={0.25} key={item.id} 
                                     onClick = {()=> setDetails({id:Number(item.id), state: !details.state})} >
                                     &nbsp;&nbsp;
-                                    <img src='/Vector.svg' alt='click me' className='dots'/>&nbsp;&nbsp;
+                                    {smallVisible && <img src='/Vector.svg' alt='click me' className='dots'/>} &nbsp;&nbsp; 
                                    { Number(item.id) === details.id && 
                                    <Details id= {item.id} visibility={details.state} />}
                                 </Grid>
-                            </Grid>
-                            )
-                        })
-                        }
+                            </Grid> 
+                            
+                        )
+                    }
                         
             </div>       
             
-            <Stack direction='row'
-                    spacing={3}
-                    justifyContent='flex-start'
-                    mb={4}
-                    pl={1}
+            <Grid container
+                  sx={{userSelect:'none'}}
+                  spacing={1}
                     >
-                <Typography>Showing</Typography>
-                <form>
-                    <select>
-                        {listOfNumber.map((item) => {
+                <Grid item xs={10} sm={5} md={5} sx={{display:'flex'}}>
+                    <Typography pt={1}>Showing</Typography>
+                    <form>
+                        <select onChange={handleNumberClick} className='select'>
+                            {listOfNumber.map((item) => {
 
-                            let select:boolean = false;
-                            if(item===itemNumber){
-                                select = true;
-                            }
-                            return <option selected={select} onChange={handleNumberClick}>{item}</option>})}
-                    </select>
-                </form>
-                <Typography>out of {count}</Typography>
-            </Stack>
+                                return <option 
+                                            selected={item===start+16?true:false}
+                                            value={item}>
+                                                {item}
+                                        </option>})}
+                        </select>
+                    </form>
+                    <Typography pt={1}>out of {count}</Typography>
+                </Grid>
+                <Grid item xs={10} sm={5} md={5}>
+                    <NextPage 
+                        listOfNumber={listOfNumber} 
+                        start={start}
+                        handleClickNext={handleclickNext} 
+                    />
+                </Grid>
+            </Grid>
         </div>
     )
 }
