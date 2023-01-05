@@ -20,6 +20,8 @@
       border: 1px solid rgba(84, 95, 125, 0.14);
       border-radius: 4px;
       box-sizing: border-box; }
+    .table .table-info:active, .table .table-info:focus {
+      transform: scale(0.95); }
   .top-covering-all-item {
     position: relative;
     top: 190px;

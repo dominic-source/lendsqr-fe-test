@@ -12,7 +12,8 @@ import { Typography,
          FormControl,
        } from '@mui/material';     
 import { styled } from '@mui/material/styles';
-import { LoginService} from '../services/LoginServices';
+import { LoginService } from '../services/LoginServices';
+import { Link } from 'react-router-dom';
 
 
 const CssTextField = styled(TextField)({
@@ -66,16 +67,18 @@ const Login:React.FC = () => {
       const loginService: LoginService= new LoginService();
 
       const handleSubmit = async (event: React.MouseEvent<HTMLAnchorElement>)=>{
-        event.preventDefault();
+        // event.preventDefault();
 
         const loginResponse = await loginService.login(
           values.email, values.password);
-
-        setValues({
+         setValues({
           ...values,
           isLoggedIn: loginResponse,
           logInAttempted: true
         });
+        console.log(values);
+        
+
       }
       
       let loginLabel = values.logInAttempted && values.isLoggedIn? 
@@ -164,7 +167,11 @@ const Login:React.FC = () => {
                                   />
                           </CssFormControl>
                           <Typography variant='button' className='forgot_password_style'>FORGOT PASSWORD?</Typography>
-                          <Button variant="contained" className='login' href='/dashboard' onClick={handleSubmit}>LOG IN</Button> 
+                          <Link to={values.isLoggedIn?'/dashboard':'/'} onClick={handleSubmit}>
+                            <Button variant="contained" className='login' >
+                                LOG IN
+                            </Button> 
+                          </Link>
                           {values.logInAttempted && loginLabel} 
                       </Stack>
                   </Box>

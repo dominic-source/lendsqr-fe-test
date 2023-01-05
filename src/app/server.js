@@ -22,7 +22,9 @@ app.use(bodyParser.json());
  app.post('/login',(req, res) => {
     let password = req.body.password;
     let email = req.body.email;
-    res.send(true);
+      console.log(password,email);
+      res.send(true);
+    
   });
 
 app.listen('3002', () =>   console.log("Server is connected!"));

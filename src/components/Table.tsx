@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { Stack, Typography, Grid } from '@mui/material';
+import { Typography, Grid, Link } from '@mui/material';
 import Details from './Details';
 import NextPage from './nextpage';
 import Resize from '../app/resize';
@@ -110,7 +110,7 @@ interface nameLendr {
 
 //   list of items for the table
 const listOfFilterItems:[string[],number[]] = [['ORGANIZATION','USERNAME','EMAIL','PHONE NUMBER', 'DATE JOINED', 'STATUS'],
-    [1.5, 1.75, 3, 2, 2.5, 1]]
+    [1.75, 1.75, 2.75, 2, 2.5, 1]]
     
     
 for(let i = 0; i < listOfFilterItems[1].length ; ++i){
@@ -121,7 +121,7 @@ for(let i = 0; i < listOfFilterItems[1].length ; ++i){
     return (
         <div>
             <div className="table">
-                <Grid container >
+                <Grid container rowSpacing={1}>
                     {namesArray.map((item) => {return (<Grid item xs={10} sm={item.space} md={item.space} className='table-head'>
                         <div className='table-item' onClick={handleclick}>
                             {item.name}
@@ -141,23 +141,46 @@ for(let i = 0; i < listOfFilterItems[1].length ; ++i){
                             lastActiveDate: string,
                         },index)=>
                             
-                            index >= start && index <= start+15 && <Grid container key={item.id} className='table-info' mt={2} mb={2}>                        
-                                <Grid item xs={12} sm={1.5} md={1.5}>{item.orgName}</Grid>
-                                <Grid item xs={12} sm={1.75} md={1.75}>{item.userName}</Grid>
-                                <Grid item xs={12} sm={3} md={3}><Typography noWrap sx={{fontSize:'11px', letterSpacing:'0.1em'}}>{item.email}</Typography></Grid>
-                                <Grid item xs={12} sm={2} md={2}>{item.phoneNumber}</Grid>
-                                <Grid item xs={12} sm={2.5} md={2.5}>{new Date (item.createdAt).toUTCString()}</Grid>
-                                {new Date (item.lastActiveDate).getUTCMonth() <= new Date().getUTCMonth() ? 
-                                <Grid item xs={12} sm={1} md={1}><div className='active'>Active</div></Grid> : 
-                                <Grid item xs={10} sm={1} md={1}><div className='inactive'>Inactive</div></Grid>}
-                                <Grid item xs={2} sm={0.25} md={0.25} key={item.id} 
-                                    onClick = {()=> setDetails({id:Number(item.id), state: !details.state})} >
-                                    &nbsp;&nbsp;
-                                    {smallVisible && <img src='/Vector.svg' alt='click me' className='dots'/>} &nbsp;&nbsp; 
-                                   { Number(item.id) === details.id && 
-                                   <Details id= {item.id} visibility={details.state} />}
-                                </Grid>
-                            </Grid> 
+                            index >= start && index <= start+15 && 
+                                <Grid container key={item.id} className='table-info' mt={2} mb={2}>                        
+                                    <Grid item xs={12} sm={1.75} md={1.75}>
+                                        <Link 
+                                            href={`/user_details_page/${item.id}`} 
+                                            underline='none'
+                                            color='inherit'>
+                                                {item.orgName}
+                                        </Link>
+                                    </Grid>
+                                    <Grid item xs={12} sm={1.75} md={1.75}>
+                                        <Link 
+                                            href={`/user_details_page/${item.id}`} 
+                                            underline='none'
+                                            color='inherit'>
+                                                {item.userName}
+                                        </Link>
+                                    </Grid>
+                                    <Grid item xs={12} sm={2.75} md={2.75}>
+                                        <Link 
+                                            href={`/user_details_page/${item.id}`} 
+                                            underline='none'
+                                            color='inherit'
+                                            sx={{fontSize:'9px'}}>
+                                                {item.email}
+                                        </Link>
+                                    </Grid>
+                                    <Grid item xs={12} sm={2} md={2}>{item.phoneNumber}</Grid>
+                                    <Grid item xs={12} sm={2.5} md={2.5}>{new Date (item.createdAt).toUTCString()}</Grid>
+                                    {new Date (item.lastActiveDate).getUTCMonth() <= new Date().getUTCMonth() ? 
+                                    <Grid item xs={12} sm={1} md={1}><div className='active'>Active</div></Grid> : 
+                                    <Grid item xs={10} sm={1} md={1}><div className='inactive'>Inactive</div></Grid>}
+                                    <Grid item xs={2} sm={0.25} md={0.25} key={item.id} 
+                                        onClick = {()=> setDetails({id:Number(item.id), state: !details.state})} >
+                                        &nbsp;&nbsp;
+                                        {smallVisible && <img src='/Vector.svg' alt='click me' className='dots'/>} &nbsp;&nbsp; 
+                                       { Number(item.id) === details.id && 
+                                       <Details id= {item.id} visibility={details.state} />}
+                                    </Grid>
+                                </Grid> 
                             
                         )
                     }

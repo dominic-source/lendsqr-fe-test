@@ -16,10 +16,10 @@ export class LoginService {
            
             if(loginResponse.status === 200){
                 console.log('Successful login');
-                
                 return loginResponse.data;
             } else {
                 console.log('Un-successful login');
+                console.log(loginResponse.status);
                 return false;
             }
         } catch(error:any) {
