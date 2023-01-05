@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import { Typography,
          Box, 
          TextField, 
@@ -13,8 +13,7 @@ import { Typography,
        } from '@mui/material';     
 import { styled } from '@mui/material/styles';
 import { LoginService } from '../services/LoginServices';
-import { Link } from 'react-router-dom';
-
+import EastIcon from '@mui/icons-material/East';
 
 const CssTextField = styled(TextField)({
     '& label.Mui-focused': {
@@ -67,7 +66,7 @@ const Login:React.FC = () => {
       const loginService: LoginService= new LoginService();
 
       const handleSubmit = async (event: React.MouseEvent<HTMLAnchorElement>)=>{
-        // event.preventDefault();
+        event.preventDefault();
 
         const loginResponse = await loginService.login(
           values.email, values.password);
@@ -76,13 +75,10 @@ const Login:React.FC = () => {
           isLoggedIn: loginResponse,
           logInAttempted: true
         });
-        console.log(values);
-        
-
       }
       
       let loginLabel = values.logInAttempted && values.isLoggedIn? 
-      <Box>Login Successful</Box>: <Box>Login failed</Box> 
+      <Button href='/dashboard' endIcon={<EastIcon />}>Login Successful</Button>: <Button>Login failed</Button> 
 
       const handleChange =
         (prop: keyof State) => (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -100,6 +96,9 @@ const Login:React.FC = () => {
         event.preventDefault();
       };
 
+      useEffect(()=> {
+
+      },[])
     return (
         <div>
             <Grid container spacing={{xs:0,sm:3, md:5}}
@@ -167,11 +166,9 @@ const Login:React.FC = () => {
                                   />
                           </CssFormControl>
                           <Typography variant='button' className='forgot_password_style'>FORGOT PASSWORD?</Typography>
-                          <Link to={values.isLoggedIn?'/dashboard':'/'} onClick={handleSubmit}>
-                            <Button variant="contained" className='login' >
+                            <Button variant="contained" className='login' href='' onClick={handleSubmit}>
                                 LOG IN
                             </Button> 
-                          </Link>
                           {values.logInAttempted && loginLabel} 
                       </Stack>
                   </Box>

@@ -18,7 +18,6 @@ const Navigation:React.FC = () => {
   const [age, setAge] = React.useState('');
 
   const handleChange = (event: SelectChangeEvent) => {
-    console.log('Changed!!!');
     setAge(event.target.value);
   };
 
@@ -57,7 +56,7 @@ const Navigation:React.FC = () => {
 
                 <Avatar alt="smiling lady" src='/image 4.png' />
 
-                <FormControl sx={{ m: 1, minWidth: 80 }}>
+                <FormControl sx={{ m: 1, minWidth: 120 }}>
                     <Select
                       value={age}
                       onChange={handleChange}
