@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {  Box, 
     Avatar,
     MenuItem,
@@ -8,14 +8,24 @@ import {  Box,
 } from '@mui/material'; 
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import SearchIcon from '@mui/icons-material/Search';
+import AddIcon from '@mui/icons-material/Add';
 import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined';
-import '../css/App.css';
+import Resize from '../app/resize';
 
 
 // This function component will displays items on the top of the screen
 const Navigation:React.FC = () => {
 
   const [age, setAge] = React.useState('');
+  const [state, setState] = useState(false);
+    
+    // This will set the detect the width of the screen and set the state of the app to fit the screen
+    useEffect(() =>{
+        Resize(() => {
+            setState(window.matchMedia('(max-width:627px)').matches)
+        })
+      },[]);
+
 
   const handleChange = (event: SelectChangeEvent) => {
     setAge(event.target.value);
@@ -70,6 +80,9 @@ const Navigation:React.FC = () => {
                     </Select>
                 </FormControl>
               </Stack>
+            </Grid>
+            <Grid>
+              {state && <AddIcon fontSize='large' sx={{color:'#39CDCC'}} className='top-mobile' /> }
             </Grid>
           </Grid>
       </div>)

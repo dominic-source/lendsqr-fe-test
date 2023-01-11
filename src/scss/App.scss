@@ -150,6 +150,11 @@ $size2: 40px;
     @include basic_font($ffa:$font-family_roboto, $fs:16px, $lh:27px, $ls:0em, $c:$welcome-color);
 }
 
+.top-mobile {
+    
+    transform: rotate(45deg);
+}
+
 /*                            End of Top Navigation                                     */
 
 
@@ -164,7 +169,7 @@ $size2: 40px;
     max-width: 19%;
 
     .container { 
-        height: 520px;
+        height: 400px;
         overflow-y: scroll;
         overflow-x: hidden;
         

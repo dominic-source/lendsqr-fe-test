@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import { Box } from '@mui/material';
 import Resize from '../app/resize';
-
+import CloseIcon from '@mui/icons-material/Close';
 
 
 interface dashboardItem {

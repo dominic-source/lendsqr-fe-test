@@ -19,7 +19,6 @@ export class LoginService {
                 return loginResponse.data;
             } else {
                 console.log('Un-successful login');
-                console.log(loginResponse.status);
                 return false;
             }
         } catch(error:any) {
